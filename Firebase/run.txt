@@ -1,0 +1,6 @@
+start:
+firebase emulators:start --import ./dev-data --export-on-exit ./dev-data
+
+save:
+firebase emulators:export ./dev-data
+y
