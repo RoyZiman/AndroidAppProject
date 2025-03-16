@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navHome">
+
+    <fragment
+        android:id="@+id/navHome"
+        android:name="dev.android.project.ui.home.HomeFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home"/>
+
+    <fragment
+        android:id="@+id/navCreateListing"
+        android:name="dev.android.project.ui.createListing.CreateListingFragment"
+        android:label="@string/menu_create_listing"
+        tools:layout="@layout/fragment_create_listing"/>
+
+    <fragment
+        android:id="@+id/navSettings"
+        android:name="dev.android.project.ui.settings.SettingsFragment"
+        android:label="@string/menu_settings"
+        tools:layout="@layout/fragment_settings"/>
+
+    <activity
+        android:id="@+id/navLogin"
+        android:name="dev.android.project.ui.login.LoginActivity"
+        android:label="@string/menu_login"/>
+
+
+
+
+
+</navigation>

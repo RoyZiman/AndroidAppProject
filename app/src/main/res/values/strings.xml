@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">Android Project V2</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_user_name">Guest</string>
+    <string name="nav_header_user_email">Guest@project.android.dev</string>
+    <string name="nav_header_desc">Navigation header</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_create_listing">Create Listing</string>
+    <string name="menu_settings">Settings</string>
+    <string name="menu_login">Login</string>
+    <string name="menu_logout">Logout</string>
+
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="Login_successful">"Logged in successfully as "</string>
+    <string name="invalid_email">Not a valid email address</string>
+    <string name="invalid_password">Password must be at least 6 characters long</string>
+    <string name="login_failed">"Login failed"</string>
+</resources>
