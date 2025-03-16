@@ -4,15 +4,15 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.widget.TextView;
 
-import com.google.android.material.snackbar.Snackbar;
-import com.google.android.material.navigation.NavigationView;
-
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.snackbar.Snackbar;
 
 import dev.android.project.data.model.User;
 import dev.android.project.databinding.ActivityMainBinding;
@@ -77,7 +77,6 @@ public class MainActivity extends AppCompatActivity
                        recreate();
                        return true;
                    });
-            ;
         }
         else
         {
@@ -92,6 +91,13 @@ public class MainActivity extends AppCompatActivity
             tvUsername.setText(User.getCurrentUser().getName());
             tvEmail.setText(User.getCurrentUser().getEmail());
         }
+    }
+
+    @Override
+    protected void onResume()
+    {
+        super.onResume();
+        updateNavigationMenu(binding.navView);
     }
 
     @Override

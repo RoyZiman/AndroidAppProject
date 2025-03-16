@@ -11,11 +11,16 @@ public class User
 
     private static final FirebaseAuth AUTH = FBAuth.getInstance();
 
-    private String _id;
-    private String _name;
-    private String _email;
+    private final String _id;
+    private final String _name;
+    private final String _email;
     private FirebaseUser user;
 
+
+    public User(FirebaseUser user)
+    {
+        this(user.getUid(), user.getDisplayName(), user.getEmail());
+    }
 
     protected User(String id, String name, String email)
     {
@@ -23,17 +28,10 @@ public class User
         _name = name;
         _email = email;
     }
-    public User(FirebaseUser user)
-    {
-        this(user.getUid(), user.getDisplayName(), user.getEmail());
-    }
 
     public static User getCurrentUser()
     {
         FirebaseUser user = AUTH.getCurrentUser();
-//        if (user == null)
-//            return new Guest();
-
         return new User(user);
     }
 
@@ -48,23 +46,18 @@ public class User
         AUTH.signOut();
     }
 
-    public String getId() {
+    public String getId()
+    {
         return _id;
     }
 
-    public String getName() {
+    public String getName()
+    {
         return _name;
     }
 
-    public String getEmail() {
+    public String getEmail()
+    {
         return _email;
     }
-//
-//    public static class Guest extends User
-//    {
-//        private Guest()
-//        {
-//            super("-1", "Guest", "");
-//        }
-//    }
 }

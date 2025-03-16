@@ -1,11 +1,8 @@
-package  dev.android.project.ui.login;
+package dev.android.project.ui.login;
 
 import android.app.Activity;
-
-import androidx.lifecycle.ViewModelProvider;
+import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.appcompat.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -13,16 +10,21 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import dev.android.project.R;
 import dev.android.project.data.model.User;
 import dev.android.project.databinding.ActivityLoginBinding;
+import dev.android.project.ui.register.RegisterActivity;
 
 public class LoginActivity extends AppCompatActivity
 {
 
-    private LoginViewModel loginViewModel;
+    private LoginViewModel _loginViewModel;
     private ActivityLoginBinding _binding;
 
     @Override
@@ -34,15 +36,17 @@ public class LoginActivity extends AppCompatActivity
         setContentView(_binding.getRoot());
 
 
-        loginViewModel = new ViewModelProvider(this, new LoginViewModelFactory())
+        _loginViewModel = new ViewModelProvider(this, new LoginViewModelFactory())
                 .get(LoginViewModel.class);
 
         final EditText etEmail = _binding.etEmail;
         final EditText etPassword = _binding.etPassword;
         final Button btnLogin = _binding.btnLogin;
+        final TextView tvRegisterRedirect = _binding.tvRegisterRedirect;
         final ProgressBar loadingProgressBar = _binding.loading;
 
-        loginViewModel.getLoginFormState().observe(this, loginFormState ->
+
+        _loginViewModel.getLoginFormState().observe(this, loginFormState ->
         {
             if (loginFormState == null)
                 return;
@@ -54,12 +58,10 @@ public class LoginActivity extends AppCompatActivity
                 etPassword.setError(getString(loginFormState.getPasswordError()));
         });
 
-        loginViewModel.getLoginResult().observe(this, loginResult ->
+        _loginViewModel.getLoginResult().observe(this, loginResult ->
         {
             if (loginResult == null)
-            {
                 return;
-            }
             loadingProgressBar.setVisibility(View.GONE);
             if (loginResult.getError() != null)
             {
@@ -78,22 +80,16 @@ public class LoginActivity extends AppCompatActivity
         TextWatcher afterTextChangedListener = new TextWatcher()
         {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after)
-            {
-                // ignore
-            }
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
 
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count)
-            {
-                // ignore
-            }
+            public void onTextChanged(CharSequence s, int start, int before, int count) {}
 
             @Override
             public void afterTextChanged(Editable s)
             {
-                loginViewModel.loginDataChanged(etEmail.getText().toString(),
-                                                etPassword.getText().toString());
+                _loginViewModel.loginDataChanged(etEmail.getText().toString(),
+                                                 etPassword.getText().toString());
             }
         };
         etEmail.addTextChangedListener(afterTextChangedListener);
@@ -101,22 +97,27 @@ public class LoginActivity extends AppCompatActivity
         etPassword.setOnEditorActionListener((v, actionId, event) -> {
             if (actionId == EditorInfo.IME_ACTION_DONE)
             {
-                loginViewModel.login(etEmail.getText().toString(),
-                                     etPassword.getText().toString());
+                _loginViewModel.login(etEmail.getText().toString(),
+                                      etPassword.getText().toString());
             }
             return false;
         });
 
         btnLogin.setOnClickListener(v -> {
             loadingProgressBar.setVisibility(View.VISIBLE);
-            loginViewModel.login(etEmail.getText().toString(),
-                                 etPassword.getText().toString());
+            _loginViewModel.login(etEmail.getText().toString(),
+                                  etPassword.getText().toString());
+        });
+        tvRegisterRedirect.setOnClickListener(v -> {
+            Intent intent = new Intent(getApplicationContext(), RegisterActivity.class);
+            startActivity(intent);
+            finish();
         });
     }
 
     private void updateUiWithUser(User model)
     {
-        String welcome = getString(R.string.Login_successful) + model.getName();
+        String welcome = getString(R.string.login_successful) + model.getName();
         // TODO : initiate successful logged in experience
         Toast.makeText(getApplicationContext(), welcome, Toast.LENGTH_LONG).show();
     }
