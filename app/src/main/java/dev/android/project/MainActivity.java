@@ -20,8 +20,8 @@ import dev.android.project.databinding.ActivityMainBinding;
 public class MainActivity extends AppCompatActivity
 {
 
-    private AppBarConfiguration mAppBarConfiguration;
-    private ActivityMainBinding binding;
+    private AppBarConfiguration _mAppBarConfiguration;
+    private ActivityMainBinding _binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -29,26 +29,26 @@ public class MainActivity extends AppCompatActivity
 
         super.onCreate(savedInstanceState);
 
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
+        _binding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(_binding.getRoot());
 
-        setSupportActionBar(binding.appBarMain.toolbar);
-        binding.appBarMain.fab.setOnClickListener(view -> Snackbar.make(view,
-                                                                        "Replace with your own action",
-                                                                        Snackbar.LENGTH_LONG)
-                                                                  .setAction("Action", null)
-                                                                  .setAnchorView(R.id.fab).show());
-        DrawerLayout drawer = binding.drawerLayout;
-        NavigationView navigationView = binding.navView;
+        setSupportActionBar(_binding.appBarMain.toolbar);
+        _binding.appBarMain.fab.setOnClickListener(view -> Snackbar.make(view,
+                                                                         "Replace with your own action",
+                                                                         Snackbar.LENGTH_LONG)
+                                                                   .setAction("Action", null)
+                                                                   .setAnchorView(R.id.fab).show());
+        DrawerLayout drawer = _binding.drawerLayout;
+        NavigationView navigationView = _binding.navView;
 
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
-        mAppBarConfiguration = new AppBarConfiguration.Builder(
+        _mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.navHome, R.id.navCreateListing, R.id.navSettings)
                 .setOpenableLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
-        NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
+        NavigationUI.setupActionBarWithNavController(this, navController, _mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
 
@@ -97,14 +97,14 @@ public class MainActivity extends AppCompatActivity
     protected void onResume()
     {
         super.onResume();
-        updateNavigationMenu(binding.navView);
+        updateNavigationMenu(_binding.navView);
     }
 
     @Override
     public boolean onSupportNavigateUp()
     {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
-        return NavigationUI.navigateUp(navController, mAppBarConfiguration)
+        return NavigationUI.navigateUp(navController, _mAppBarConfiguration)
                || super.onSupportNavigateUp();
     }
 }

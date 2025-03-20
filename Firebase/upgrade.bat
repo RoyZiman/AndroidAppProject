@@ -1,0 +1,1 @@
+curl -sL https://firebase.tools | upgrade=true bash

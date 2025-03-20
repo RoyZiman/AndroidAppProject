@@ -15,7 +15,7 @@ import dev.android.project.databinding.FragmentCreateListingBinding;
 public class CreateListingFragment extends Fragment
 {
 
-    private FragmentCreateListingBinding binding;
+    private FragmentCreateListingBinding _binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState)
@@ -23,10 +23,10 @@ public class CreateListingFragment extends Fragment
         CreateListingViewModel CreateListingViewModel =
                 new ViewModelProvider(this).get(CreateListingViewModel.class);
 
-        binding = FragmentCreateListingBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
+        _binding = FragmentCreateListingBinding.inflate(inflater, container, false);
+        View root = _binding.getRoot();
 
-        final TextView textView = binding.tvCreateListing;
+        final TextView textView = _binding.tvCreateListing;
         CreateListingViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
     }
@@ -35,6 +35,6 @@ public class CreateListingFragment extends Fragment
     public void onDestroyView()
     {
         super.onDestroyView();
-        binding = null;
+        _binding = null;
     }
 }

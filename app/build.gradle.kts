@@ -38,6 +38,8 @@ android {
 dependencies {
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.analytics)
+    implementation(libs.firebase.auth)
+    implementation(libs.firebase.firestore)
 
     implementation(libs.appcompat)
     implementation(libs.material)
@@ -47,8 +49,10 @@ dependencies {
     implementation(libs.navigation.fragment)
     implementation(libs.navigation.ui)
     implementation(libs.annotation)
-    implementation(libs.firebase.auth)
     implementation(libs.activity)
+    implementation(libs.legacy.support.v4)
+    implementation(libs.recyclerview)
+    implementation(libs.firebase.storage)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)

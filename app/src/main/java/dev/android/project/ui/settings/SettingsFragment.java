@@ -15,7 +15,7 @@ import dev.android.project.databinding.FragmentSettingsBinding;
 public class SettingsFragment extends Fragment
 {
 
-    private FragmentSettingsBinding binding;
+    private FragmentSettingsBinding _binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState)
@@ -23,10 +23,10 @@ public class SettingsFragment extends Fragment
         SettingsViewModel settingsViewModel =
                 new ViewModelProvider(this).get(SettingsViewModel.class);
 
-        binding = FragmentSettingsBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
+        _binding = FragmentSettingsBinding.inflate(inflater, container, false);
+        View root = _binding.getRoot();
 
-        final TextView textView = binding.tvSettings;
+        final TextView textView = _binding.tvSettings;
         settingsViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
     }
@@ -35,6 +35,6 @@ public class SettingsFragment extends Fragment
     public void onDestroyView()
     {
         super.onDestroyView();
-        binding = null;
+        _binding = null;
     }
 }

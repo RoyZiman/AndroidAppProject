@@ -3,7 +3,7 @@ package dev.android.project.data.model;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-import dev.android.project.data.providers.FBAuth;
+import dev.android.project.data.providers.Firebase.FBAuth;
 
 public class User
 {

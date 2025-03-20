@@ -1,4 +1,4 @@
-package dev.android.project.data.providers;
+package dev.android.project.data.providers.Firebase;
 
 import com.google.firebase.auth.FirebaseAuth;
 
