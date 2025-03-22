@@ -36,10 +36,12 @@ android {
 }
 
 dependencies {
+    implementation(libs.okhttp)
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.analytics)
     implementation(libs.firebase.auth)
     implementation(libs.firebase.firestore)
+    implementation(libs.firebase.storage)
 
     implementation(libs.appcompat)
     implementation(libs.material)
@@ -52,7 +54,6 @@ dependencies {
     implementation(libs.activity)
     implementation(libs.legacy.support.v4)
     implementation(libs.recyclerview)
-    implementation(libs.firebase.storage)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)

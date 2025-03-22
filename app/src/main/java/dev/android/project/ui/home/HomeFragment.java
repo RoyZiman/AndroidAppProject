@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import dev.android.project.data.model.Product;
 import dev.android.project.data.providers.DBProductsManager;
 import dev.android.project.databinding.FragmentProductListBinding;
 
@@ -52,15 +51,8 @@ public class HomeFragment extends Fragment
     {
         super.onCreate(savedInstanceState);
 
-        for (int i = 0; i < 10; i++)
-        {
-            DBProductsManager.setProduct(new Product("added" + i, "product added by the app", 6.9).setID("_" + i));
-        }
-
         if (getArguments() != null)
-        {
             mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
-        }
     }
 
     @Override

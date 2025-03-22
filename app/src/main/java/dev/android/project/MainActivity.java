@@ -1,7 +1,10 @@
 package dev.android.project;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.Menu;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,6 +18,7 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 
 import dev.android.project.data.model.User;
+import dev.android.project.data.providers.DBStorageManager;
 import dev.android.project.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity
@@ -52,9 +56,6 @@ public class MainActivity extends AppCompatActivity
         NavigationUI.setupWithNavController(navigationView, navController);
 
 
-        updateNavigationMenu(navigationView);
-
-
     }
 
 //    @Override
@@ -64,6 +65,13 @@ public class MainActivity extends AppCompatActivity
 //        getMenuInflater().inflate(R.menu.main, menu);
 //        return true;
 //    }
+
+    @Override
+    protected void onResume()
+    {
+        super.onResume();
+        updateNavigationMenu(_binding.navView);
+    }
 
     private void updateNavigationMenu(NavigationView navigationView)
     {
@@ -88,17 +96,16 @@ public class MainActivity extends AppCompatActivity
         {
             TextView tvUsername = navigationView.getHeaderView(0).findViewById(R.id.tvUserName);
             TextView tvEmail = navigationView.getHeaderView(0).findViewById(R.id.tvUserEmail);
+            ImageView ivUserImage = navigationView.getHeaderView(0).findViewById(R.id.ivUserImage);
             tvUsername.setText(User.getCurrentUser().getName());
             tvEmail.setText(User.getCurrentUser().getEmail());
+            DBStorageManager.getProfilePicture(User.getCurrentUser().getId()).addOnSuccessListener(bytes -> {
+                Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+                ivUserImage.setImageBitmap(bitmap);
+            });
         }
     }
 
-    @Override
-    protected void onResume()
-    {
-        super.onResume();
-        updateNavigationMenu(_binding.navView);
-    }
 
     @Override
     public boolean onSupportNavigateUp()
