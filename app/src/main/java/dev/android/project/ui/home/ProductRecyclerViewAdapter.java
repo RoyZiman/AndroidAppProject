@@ -3,6 +3,7 @@ package dev.android.project.ui.home;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -13,6 +14,7 @@ import java.util.List;
 
 import dev.android.project.R;
 import dev.android.project.data.model.Product;
+import dev.android.project.data.providers.DBStorageManager;
 import dev.android.project.databinding.FragmentHomeBinding;
 
 /**
@@ -41,6 +43,11 @@ public class ProductRecyclerViewAdapter extends RecyclerView.Adapter<ProductRecy
         holder.mTitleView.setText(mValues.get(position).getTitle());
         holder.mDescView.setText(mValues.get(position).getDescription());
 
+        // Call the async getImage function and set the image to an ImageView (assuming you have an ImageView in your
+        // layout)
+        DBStorageManager.getProductPreview(holder.mItem.getID())
+                        .addOnSuccessListener(image -> holder.mImagePreview.setImageBitmap(image));
+
         holder.itemView.setOnClickListener(v -> {
             Bundle bundle = new Bundle();
             bundle.putString("productID", holder.mItem.getID());
@@ -58,6 +65,7 @@ public class ProductRecyclerViewAdapter extends RecyclerView.Adapter<ProductRecy
     {
         public final TextView mTitleView;
         public final TextView mDescView;
+        public final ImageView mImagePreview;
         public Product mItem;
 
         public ViewHolder(FragmentHomeBinding binding)
@@ -65,6 +73,7 @@ public class ProductRecyclerViewAdapter extends RecyclerView.Adapter<ProductRecy
             super(binding.getRoot());
             mTitleView = binding.tvProductTitle;
             mDescView = binding.tvProductDescription;
+            mImagePreview = binding.ivProductPreview;
         }
 
         @NonNull

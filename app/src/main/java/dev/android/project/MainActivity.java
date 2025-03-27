@@ -1,7 +1,7 @@
 package dev.android.project;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.widget.ImageView;
@@ -15,7 +15,10 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.navigation.NavigationView;
-import com.google.android.material.snackbar.Snackbar;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 
 import dev.android.project.data.model.User;
 import dev.android.project.data.providers.DBStorageManager;
@@ -55,7 +58,6 @@ public class MainActivity extends AppCompatActivity
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         NavigationUI.setupActionBarWithNavController(this, navController, _mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
-
 
     }
 
@@ -103,10 +105,8 @@ public class MainActivity extends AppCompatActivity
             tvUsername.setText(User.getCurrentUser().getName());
             tvEmail.setText(User.getCurrentUser().getEmail());
 
-            DBStorageManager.getProfilePicture(User.getCurrentUser().getId()).addOnSuccessListener(bytes -> {
-                Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-                ivUserImage.setImageBitmap(bitmap);
-            });
+            DBStorageManager.getProfilePicture(User.getCurrentUser().getId())
+                            .addOnSuccessListener(bitmap -> ivUserImage.setImageBitmap(bitmap));
 
             ivUserImage.setOnClickListener(v -> {
                 _binding.drawerLayout.closeDrawer(_binding.navView);
