@@ -1,13 +1,17 @@
 package dev.android.project.ui.home;
 
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
+import dev.android.project.R;
 import dev.android.project.data.model.Product;
 import dev.android.project.databinding.FragmentHomeBinding;
 
@@ -37,6 +41,12 @@ public class ProductRecyclerViewAdapter extends RecyclerView.Adapter<ProductRecy
         holder.mItem = mValues.get(position);
         holder.mIdView.setText(mValues.get(position).getTitle());
         holder.mContentView.setText(mValues.get(position).toString());
+
+        holder.itemView.setOnClickListener(v -> {
+            Bundle bundle = new Bundle();
+            bundle.putString("productID", holder.mItem.getID());
+            Navigation.findNavController(v).navigate(R.id.action_homeFragment_to_productFragment, bundle);
+        });
     }
 
     @Override
@@ -58,10 +68,13 @@ public class ProductRecyclerViewAdapter extends RecyclerView.Adapter<ProductRecy
             mContentView = binding.content;
         }
 
+        @NonNull
         @Override
         public String toString()
         {
             return super.toString() + " '" + mContentView.getText() + "'";
         }
     }
+
+
 }

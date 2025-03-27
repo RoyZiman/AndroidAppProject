@@ -44,6 +44,27 @@ public class DBProductsManager
         return taskCompletionSource.getTask();
     }
 
+    public static Task<Product> getProduct(String id)
+    {
+        TaskCompletionSource<Product> taskCompletionSource = new TaskCompletionSource<>();
+
+        _collectionRef.document(id).get().addOnCompleteListener(task -> {
+            if (task.isSuccessful())
+            {
+                DocumentSnapshot document = task.getResult();
+                taskCompletionSource.setResult(
+                        new Product(document.getString(FIELD_TITLE),
+                                    document.getString(FIELD_DESCRIPTION),
+                                    document.getDouble(FIELD_PRICE))
+                                .setID(document.getId()));
+            }
+            else
+                taskCompletionSource.setException(task.getException());
+        });
+
+        return taskCompletionSource.getTask();
+    }
+
     public static void addProduct(Product product)
     {
         _collectionRef

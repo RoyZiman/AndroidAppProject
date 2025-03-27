@@ -10,7 +10,11 @@
         android:id="@+id/navHome"
         android:name="dev.android.project.ui.home.HomeFragment"
         android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home"/>
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_homeFragment_to_productFragment"
+            app:destination="@id/navProductView"/>
+    </fragment>
 
     <fragment
         android:id="@+id/navCreateListing"
@@ -35,6 +39,16 @@
         android:id="@+id/navLogin"
         android:name="dev.android.project.ui.login.LoginActivity"
         android:label="@string/menu_login"/>
+
+
+    <fragment
+        android:id="@+id/navProductView"
+        android:name="dev.android.project.ui.product.ProductFragment"
+        tools:layout="@layout/fragment_product">
+        <argument
+            android:name="productID"
+            app:argType="string"/>
+    </fragment>
 
 
 </navigation>
