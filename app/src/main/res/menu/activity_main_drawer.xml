@@ -14,6 +14,10 @@
             android:icon="@drawable/ic_menu_create_listing"
             android:title="@string/menu_create_listing"/>
         <item
+            android:id="@+id/navProfile"
+            android:icon="@drawable/ic_menu_profile"
+            android:title="@string/menu_profile"/>
+        <item
             android:id="@+id/navSettings"
             android:icon="@drawable/ic_menu_settings"
             android:title="@string/menu_settings"/>

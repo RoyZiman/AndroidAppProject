@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity
     private AppBarConfiguration _mAppBarConfiguration;
     private ActivityMainBinding _binding;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -78,6 +79,7 @@ public class MainActivity extends AppCompatActivity
         Menu navMenu = navigationView.getMenu();
         if (User.isLoggedIn())
         {
+            navMenu.findItem(R.id.navProfile).setVisible(true);
             navMenu.findItem(R.id.navLogin).setVisible(false);
             navMenu.findItem(R.id.navLogout).setVisible(true)
                    .setOnMenuItemClickListener(item -> {
@@ -88,6 +90,7 @@ public class MainActivity extends AppCompatActivity
         }
         else
         {
+            navMenu.findItem(R.id.navProfile).setVisible(false);
             navMenu.findItem(R.id.navLogin).setVisible(true);
             navMenu.findItem(R.id.navLogout).setVisible(false);
         }
@@ -99,10 +102,29 @@ public class MainActivity extends AppCompatActivity
             ImageView ivUserImage = navigationView.getHeaderView(0).findViewById(R.id.ivUserImage);
             tvUsername.setText(User.getCurrentUser().getName());
             tvEmail.setText(User.getCurrentUser().getEmail());
+
             DBStorageManager.getProfilePicture(User.getCurrentUser().getId()).addOnSuccessListener(bytes -> {
                 Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
                 ivUserImage.setImageBitmap(bitmap);
             });
+
+            ivUserImage.setOnClickListener(v -> {
+                _binding.drawerLayout.closeDrawer(_binding.navView);
+                NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
+                navController.navigate(R.id.navProfile);
+            });
+
+
+//
+//            DBStorageManager.getImageUri(User.getCurrentUser().getId()).addOnSuccessListener(uri -> {
+//                Log.v("STORAGE", uri.toString());
+//                ivUserImage.setImageURI(uri);
+//            }).addOnFailureListener(exception -> {
+//                Log.v("STORAGE", "Failed to get image");
+//                Log.e("STORAGE", exception.getMessage());
+//            });
+
+
         }
     }
 
