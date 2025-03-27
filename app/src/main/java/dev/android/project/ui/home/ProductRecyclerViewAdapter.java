@@ -38,8 +38,8 @@ public class ProductRecyclerViewAdapter extends RecyclerView.Adapter<ProductRecy
     public void onBindViewHolder(final ViewHolder holder, int position)
     {
         holder.mItem = mValues.get(position);
-        holder.mIdView.setText(mValues.get(position).getTitle());
-        holder.mContentView.setText(mValues.get(position).toString());
+        holder.mTitleView.setText(mValues.get(position).getTitle());
+        holder.mDescView.setText(mValues.get(position).getDescription());
 
         holder.itemView.setOnClickListener(v -> {
             Bundle bundle = new Bundle();
@@ -56,22 +56,22 @@ public class ProductRecyclerViewAdapter extends RecyclerView.Adapter<ProductRecy
 
     public class ViewHolder extends RecyclerView.ViewHolder
     {
-        public final TextView mIdView;
-        public final TextView mContentView;
+        public final TextView mTitleView;
+        public final TextView mDescView;
         public Product mItem;
 
         public ViewHolder(FragmentHomeBinding binding)
         {
             super(binding.getRoot());
-            mIdView = binding.itemNumber;
-            mContentView = binding.content;
+            mTitleView = binding.tvProductTitle;
+            mDescView = binding.tvProductDescription;
         }
 
         @NonNull
         @Override
         public String toString()
         {
-            return super.toString() + " '" + mContentView.getText() + "'";
+            return super.toString() + " '" + mDescView.getText() + "'";
         }
     }
 
