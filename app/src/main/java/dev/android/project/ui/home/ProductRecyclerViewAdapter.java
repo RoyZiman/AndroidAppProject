@@ -17,7 +17,6 @@ import dev.android.project.databinding.FragmentHomeBinding;
 
 /**
  * {@link RecyclerView.Adapter} that can display a {@link Product}.
- * TODO: Replace the implementation with code for your data type.
  */
 public class ProductRecyclerViewAdapter extends RecyclerView.Adapter<ProductRecyclerViewAdapter.ViewHolder>
 {
