@@ -17,6 +17,7 @@ import androidx.navigation.ui.NavigationUI;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 
+
 import dev.android.project.data.model.User;
 import dev.android.project.data.providers.DBStorageManager;
 import dev.android.project.databinding.ActivityMainBinding;
@@ -38,11 +39,11 @@ public class MainActivity extends AppCompatActivity
         setContentView(_binding.getRoot());
 
         setSupportActionBar(_binding.appBarMain.toolbar);
-        _binding.appBarMain.fab.setOnClickListener(view -> Snackbar.make(view,
-                                                                         "Replace with your own action",
-                                                                         Snackbar.LENGTH_LONG)
-                                                                   .setAction("Action", null)
-                                                                   .setAnchorView(R.id.fab).show());
+//        _binding.appBarMain.fab.setOnClickListener(view -> Snackbar.make(view,
+//                                                                         "Replace with your own action",
+//                                                                         Snackbar.LENGTH_LONG)
+//                                                                   .setAction("Action", null)
+//                                                                   .setAnchorView(R.id.fab).show());
         DrawerLayout drawer = _binding.drawerLayout;
         NavigationView navigationView = _binding.navView;
 

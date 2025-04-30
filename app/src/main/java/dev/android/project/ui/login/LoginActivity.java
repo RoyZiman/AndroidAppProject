@@ -23,7 +23,6 @@ import dev.android.project.ui.register.RegisterActivity;
 
 public class LoginActivity extends AppCompatActivity
 {
-
     private LoginViewModel _loginViewModel;
     private ActivityLoginBinding _binding;
 
