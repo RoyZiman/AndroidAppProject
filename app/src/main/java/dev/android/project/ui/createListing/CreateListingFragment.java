@@ -19,6 +19,7 @@ import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.Group;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.fragment.NavHostFragment;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -26,6 +27,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
+import dev.android.project.R;
+import dev.android.project.data.model.Product;
 import dev.android.project.data.model.User;
 import dev.android.project.databinding.FragmentCreateListingBinding;
 
@@ -34,6 +37,7 @@ public class CreateListingFragment extends Fragment
     private static final int PICK_IMAGE_REQUEST = 1;
     private boolean _isImageValid = false;
     private CreateListingViewModel _createListingViewModel;
+    private byte[] _imageData;
     private FragmentCreateListingBinding _binding;
 
     @Override
@@ -52,9 +56,10 @@ public class CreateListingFragment extends Fragment
                 {
                     byteArrayOutputStream.write(buffer, 0, length);
                 }
-                byte[] imageData = byteArrayOutputStream.toByteArray();
+                _imageData = byteArrayOutputStream.toByteArray();
 
-                _binding.ivProductPreview.setImageBitmap(BitmapFactory.decodeByteArray(imageData, 0, imageData.length));
+                _binding.ivProductPreview.setImageBitmap(
+                        BitmapFactory.decodeByteArray(_imageData, 0, _imageData.length));
                 _isImageValid = true;
                 _createListingViewModel.imageDataChanged(_isImageValid);
 
@@ -130,6 +135,28 @@ public class CreateListingFragment extends Fragment
             startActivityForResult(intent, PICK_IMAGE_REQUEST);
         });
 
+        btnPost.setOnClickListener(view -> {
+
+            _binding.groupCreateListing.setVisibility(View.GONE);
+            _binding.loading.setVisibility(View.VISIBLE);
+
+            _createListingViewModel.Post(
+                    new Product(
+                            etTitle.getText().toString(),
+                            etDescription.getText().toString(),
+                            Double.parseDouble(etPrice.getText().toString()),
+                            User.getCurrentUser().getId()),
+                    _imageData).addOnCompleteListener(
+                    task -> {
+                        if (task.isSuccessful())
+                        {
+                            NavHostFragment.findNavController(this)
+                                           .navigate(R.id.action_navCreateListing_to_navHome);
+                        }
+                    });
+
+
+        });
 
         return root;
     }

@@ -25,6 +25,18 @@ public class DBStorageManager
               });
     }
 
+    public static void uploadProductPreview(String productId, byte[] data)
+    {
+        StorageReference previewRef = _storageRef.child("Products").child(productId).child("Preview.png");
+
+        previewRef.putBytes(data)
+                  .addOnSuccessListener(bytes -> Log.v("STORAGE", "Uploaded image successfully"))
+                  .addOnFailureListener(exception -> {
+                      Log.v("STORAGE", "Failed to upload image");
+                      Log.e("STORAGE", exception.getMessage());
+                  });
+    }
+
     public static Task<byte[]> getProfilePicture(String userId)
     {
         StorageReference pfpRef = _storageRef.child("Users").child(userId).child("ProfilePicture.png");

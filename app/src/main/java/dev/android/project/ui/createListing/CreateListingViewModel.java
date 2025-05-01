@@ -4,7 +4,12 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.google.android.gms.tasks.Task;
+
 import dev.android.project.R;
+import dev.android.project.data.model.Product;
+import dev.android.project.data.providers.DBProductsManager;
+import dev.android.project.data.providers.DBStorageManager;
 
 public class CreateListingViewModel extends ViewModel
 {
@@ -18,7 +23,13 @@ public class CreateListingViewModel extends ViewModel
         return _createListingFormState;
     }
 
-    public void Post() {}
+    public Task<Product> Post(Product product, byte[] imageData)
+    {
+        return DBProductsManager.addProduct(product).addOnSuccessListener(uploadedProduct -> {
+            DBStorageManager.uploadProductPreview(uploadedProduct.getID(), imageData);
+        });
+
+    }
 
     public void listingDataChanged(boolean isImageValid, String title, String description, String price)
     {
