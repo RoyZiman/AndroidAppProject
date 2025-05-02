@@ -6,7 +6,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -42,6 +41,7 @@ public class ProductRecyclerViewAdapter extends RecyclerView.Adapter<ProductRecy
         holder.mItem = mValues.get(position);
         holder.mTitleView.setText(mValues.get(position).getTitle());
         holder.mDescView.setText(mValues.get(position).getDescription());
+        holder.mPriceView.setText(mValues.get(position).getPriceAsString());
 
         // Call the async getImage function and set the image to an ImageView (assuming you have an ImageView in your
         // layout)
@@ -65,6 +65,7 @@ public class ProductRecyclerViewAdapter extends RecyclerView.Adapter<ProductRecy
     {
         public final TextView mTitleView;
         public final TextView mDescView;
+        public final TextView mPriceView;
         public final ImageView mImagePreview;
         public Product mItem;
 
@@ -73,14 +74,8 @@ public class ProductRecyclerViewAdapter extends RecyclerView.Adapter<ProductRecy
             super(binding.getRoot());
             mTitleView = binding.tvProductTitle;
             mDescView = binding.tvProductDescription;
+            mPriceView = binding.tvProductPrice;
             mImagePreview = binding.ivProductPreview;
-        }
-
-        @NonNull
-        @Override
-        public String toString()
-        {
-            return super.toString() + " '" + mDescView.getText() + "'";
         }
     }
 
