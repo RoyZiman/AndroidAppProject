@@ -20,7 +20,11 @@
         android:id="@+id/navCreateListing"
         android:name="dev.android.project.ui.createListing.CreateListingFragment"
         android:label="@string/menu_create_listing"
-        tools:layout="@layout/fragment_create_listing"/>
+        tools:layout="@layout/fragment_create_listing">
+        <action
+            android:id="@+id/action_navCreateListing_to_navHome"
+            app:destination="@id/navHome"/>
+    </fragment>
 
     <fragment
         android:id="@+id/navProfile"

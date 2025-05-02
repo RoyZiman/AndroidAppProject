@@ -12,14 +12,14 @@ public class Product
     private final String _title;
     private String _id;
 
-    public Product(String title, String description, double price)
+    public Product(String title, String description, double price, String storeID)
     {
         _title = title;
         _description = description;
         _price = price;
         _stock = 0;
         _dateAdded = LocalDateTime.now();
-        _storeID = "";
+        _storeID = storeID;
     }
 
     public String getID()

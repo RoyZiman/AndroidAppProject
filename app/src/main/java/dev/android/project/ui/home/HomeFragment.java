@@ -27,15 +27,6 @@ public class HomeFragment extends Fragment
 
     private ProgressBar _loadingProgressBar;
 
-
-    /**
-     * Mandatory empty constructor for the fragment manager to instantiate the fragment (e.g. upon screen orientation
-     * changes).
-     */
-    public HomeFragment()
-    {
-    }
-
     @SuppressWarnings("unused")
     public static HomeFragment newInstance(int columnCount)
     {

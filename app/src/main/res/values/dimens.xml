@@ -10,4 +10,5 @@
     <dimen name="card_margin">8dp</dimen>
     <dimen name="card_content_margin">8dp</dimen>
     <dimen name="corner_radius">8dp</dimen>
+    <dimen name="image_view_elevation">8dp</dimen>
 </resources>

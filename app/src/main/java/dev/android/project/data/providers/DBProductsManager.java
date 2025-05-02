@@ -17,6 +17,7 @@ public class DBProductsManager
     public static final String FIELD_TITLE = "title";
     public static final String FIELD_DESCRIPTION = "description";
     public static final String FIELD_PRICE = "price";
+    public static final String FIELD_STORE_ID = "storeID";
 
     private static final CollectionReference _collectionRef = FBFirestore.getInstance().collection(COLLECTION_NAME);
 
@@ -32,7 +33,8 @@ public class DBProductsManager
                 {
                     products.add(new Product(document.getString(FIELD_TITLE),
                                              document.getString(FIELD_DESCRIPTION),
-                                             document.getDouble(FIELD_PRICE))
+                                             document.getDouble(FIELD_PRICE),
+                                             document.getString(FIELD_STORE_ID))
                                          .setID(document.getId()));
                 }
                 taskCompletionSource.setResult(products);
@@ -55,7 +57,8 @@ public class DBProductsManager
                 taskCompletionSource.setResult(
                         new Product(document.getString(FIELD_TITLE),
                                     document.getString(FIELD_DESCRIPTION),
-                                    document.getDouble(FIELD_PRICE))
+                                    document.getDouble(FIELD_PRICE),
+                                    document.getString(FIELD_STORE_ID))
                                 .setID(document.getId()));
             }
             else
@@ -65,16 +68,29 @@ public class DBProductsManager
         return taskCompletionSource.getTask();
     }
 
-    public static void addProduct(Product product)
+    public static Task<Product> addProduct(Product product)
     {
+        TaskCompletionSource<Product> taskCompletionSource = new TaskCompletionSource<>();
+
         _collectionRef
                 .add(new HashMap<String, Object>()
                 {{
                     put(FIELD_TITLE, product.getTitle());
                     put(FIELD_DESCRIPTION, product.getDescription());
                     put(FIELD_PRICE, product.getPrice());
+                    put(FIELD_STORE_ID, product.getStoreID());
                 }})
-                .addOnSuccessListener(ref -> product.setID(ref.getId()));
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful())
+                    {
+                        product.setID(task.getResult().getId());
+                        taskCompletionSource.setResult(product);
+                    }
+                    else
+                        taskCompletionSource.setException(task.getException());
+                });
+        
+        return taskCompletionSource.getTask();
     }
 
     public static void setProduct(Product product)
@@ -84,6 +100,7 @@ public class DBProductsManager
             put(FIELD_TITLE, product.getTitle());
             put(FIELD_DESCRIPTION, product.getDescription());
             put(FIELD_PRICE, product.getPrice());
+            put(FIELD_STORE_ID, product.getStoreID());
         }});
     }
 
