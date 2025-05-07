@@ -22,7 +22,7 @@ public class User
         this(user.getUid(), user.getDisplayName(), user.getEmail());
     }
 
-    protected User(String id, String name, String email)
+    public User(String id, String name, String email)
     {
         _id = id;
         _name = name;

@@ -9,6 +9,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import dev.android.project.R;
 import dev.android.project.data.model.User;
+import dev.android.project.data.providers.DBUsersManager;
 
 public class RegisterViewModel extends ViewModel
 {
@@ -39,7 +40,10 @@ public class RegisterViewModel extends ViewModel
                           .updateProfile(new com.google.firebase.auth.UserProfileChangeRequest.Builder()
                                                  .setDisplayName(displayName)
                                                  .build())
-                          .addOnSuccessListener(aVoid -> _registerResult.setValue(new RegisterResult(new User(authResult.getUser()))))
+                          .addOnSuccessListener(aVoid -> {
+                              _registerResult.setValue(new RegisterResult(new User(authResult.getUser())));
+                              DBUsersManager.addUser(User.getCurrentUser());
+                          })
                           .addOnFailureListener(e -> _registerResult.setValue(new RegisterResult(e.getMessage())));
             }).addOnFailureListener(e -> _registerResult.setValue(new RegisterResult(e.getMessage())));
     }
