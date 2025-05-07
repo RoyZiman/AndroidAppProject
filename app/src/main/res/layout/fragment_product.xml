@@ -7,47 +7,176 @@
     android:layout_height="match_parent"
     tools:context=".ui.product.ProductFragment">
 
-    <!-- Product Title TextView -->
+    <!-- Product ImageView -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/cardAction"
+        app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:id="@+id/tvProductTitle"
-        android:layout_width="wrap_content"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <ImageView
+                android:id="@+id/ivProductPreview"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:cropToPadding="true"
+                app:layout_constraintDimensionRatio="h,1:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <!-- Product Title TextView -->
+
+            <TextView
+                android:id="@+id/tvProductTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
+                android:layout_marginVertical="@dimen/activity_vertical_margin"
+                android:text="@string/hint_product_title"
+                android:textSize="@dimen/text_size_title"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ivProductPreview"/>
+
+
+            <!-- Product Description TextView -->
+
+            <TextView
+                android:id="@+id/tvProductDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
+                android:layout_marginVertical="@dimen/activity_vertical_margin"
+                android:minLines="2"
+                android:text="@string/hint_product_description"
+                android:textSize="@dimen/text_size_body"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvProductTitle"/>
+
+
+            <!-- Product Price TextView -->
+
+            <TextView
+                android:id="@+id/tvProductSeller"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
+                android:layout_marginVertical="@dimen/activity_vertical_margin"
+                android:text="@string/hint_store"
+                android:textSize="@dimen/text_size_body"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/cardUserImage"
+                app:layout_constraintTop_toBottomOf="@+id/tvProductDescription"/>
+
+            <TextView
+                android:id="@+id/tvProductPriceLabel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
+                android:layout_marginVertical="@dimen/activity_vertical_margin"
+                android:text="@string/product_asking_price"
+                app:layout_constraintEnd_toStartOf="@id/tvProductPrice"
+                app:layout_constraintStart_toEndOf="@+id/cardUserImage"
+                app:layout_constraintTop_toBottomOf="@+id/tvProductSeller"/>
+
+            <TextView
+                android:id="@+id/tvProductPrice"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
+                android:layout_marginVertical="@dimen/activity_vertical_margin"
+                android:text="@string/hint_product_price"
+                android:textAlignment="textEnd"
+                android:textSize="@dimen/text_size_secondary"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/tvProductPriceLabel"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/tvProductPriceLabel"
+                app:layout_constraintTop_toTopOf="@+id/tvProductPriceLabel"/>
+
+            <!-- Product Price Label TextView -->
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardUserImage"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
+                android:layout_marginVertical="@dimen/activity_vertical_margin"
+                app:cardBackgroundColor="?attr/colorSurface"
+                app:cardCornerRadius="35dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvProductDescription">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/ivUserImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    app:srcCompat="@drawable/ic_nav_profile"/>
+            </androidx.cardview.widget.CardView>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardAction"
+        style="@style/ThemeOverlay.AppCompat"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textStyle="bold"
+        android:elevation="@dimen/image_view_elevation"
+        app:cardBackgroundColor="?attr/colorBackgroundFloating"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent">
 
 
-    <!-- Product Description TextView -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingVertical="@dimen/activity_vertical_margin">
 
-    <TextView
-        android:id="@+id/tvProductDescription"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvProductTitle"/>
+            <EditText
+                android:id="@+id/etPriceOffer"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
+                android:hint="@string/hint_product_price_offer"
+                android:inputType="numberDecimal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/btnSendOffer"
+                app:layout_constraintStart_toStartOf="parent"/>
 
+            <Button
+                android:id="@+id/btnSendOffer"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/card_content_margin"
+                android:layout_marginVertical="@dimen/activity_vertical_margin"
+                android:text="@string/action_send_offer"
+                app:layout_constraintBottom_toBottomOf="@id/etPriceOffer"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/etPriceOffer"
+                app:layout_constraintTop_toTopOf="@id/etPriceOffer"/>
 
-    <!-- Product Price TextView -->
-
-    <TextView
-        android:id="@+id/tvProductPrice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvProductDescription"/>
-
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
 
     <ProgressBar
         android:id="@+id/loading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="64dp"
-        android:layout_marginBottom="64dp"
+        android:layout_marginVertical="64dp"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

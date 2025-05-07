@@ -33,6 +33,11 @@
     <string name="hint_product_description">Product Description</string>
     <string name="hint_product_price">Product Price</string>
 
+    <string name="product_asking_price">Asking Price:</string>
+    <string name="hint_store">Seller</string>
+    <string name="action_send_offer">Send Offer</string>
+    <string name="hint_product_price_offer">Offer Price</string>
+
     <string name="no_logged_in_create_listing">You must be logged in to create a listing</string>
     <string name="invalid_image">Invalid Image</string>
     <string name="invalid_title">Title cannot be empty or too long</string>
