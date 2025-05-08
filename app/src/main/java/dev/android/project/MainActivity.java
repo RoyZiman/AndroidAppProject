@@ -1,7 +1,5 @@
 package dev.android.project;
 
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.widget.ImageView;
@@ -15,11 +13,6 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.navigation.NavigationView;
-
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-
 
 import dev.android.project.data.model.User;
 import dev.android.project.data.providers.DBStorageManager;
@@ -42,11 +35,6 @@ public class MainActivity extends AppCompatActivity
         setContentView(_binding.getRoot());
 
         setSupportActionBar(_binding.appBarMain.toolbar);
-//        _binding.appBarMain.fab.setOnClickListener(view -> Snackbar.make(view,
-//                                                                         "Replace with your own action",
-//                                                                         Snackbar.LENGTH_LONG)
-//                                                                   .setAction("Action", null)
-//                                                                   .setAnchorView(R.id.fab).show());
         DrawerLayout drawer = _binding.drawerLayout;
         NavigationView navigationView = _binding.navView;
 
@@ -61,14 +49,6 @@ public class MainActivity extends AppCompatActivity
         NavigationUI.setupWithNavController(navigationView, navController);
 
     }
-
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu)
-//    {
-//        // Inflate the menu; this adds items to the action bar if it is present.
-//        getMenuInflater().inflate(R.menu.main, menu);
-//        return true;
-//    }
 
     @Override
     protected void onResume()
@@ -114,18 +94,6 @@ public class MainActivity extends AppCompatActivity
                 NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
                 navController.navigate(R.id.navProfile);
             });
-
-
-//
-//            DBStorageManager.getImageUri(User.getCurrentUser().getId()).addOnSuccessListener(uri -> {
-//                Log.v("STORAGE", uri.toString());
-//                ivUserImage.setImageURI(uri);
-//            }).addOnFailureListener(exception -> {
-//                Log.v("STORAGE", "Failed to get image");
-//                Log.e("STORAGE", exception.getMessage());
-//            });
-
-
         }
     }
 

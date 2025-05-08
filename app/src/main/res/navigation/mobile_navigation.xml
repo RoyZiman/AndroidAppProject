@@ -10,9 +10,12 @@
         android:id="@+id/navHome"
         android:name="dev.android.project.ui.home.HomeFragment"
         android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home">
+        tools:layout="@layout/fragment_item_product">
+        <argument
+            android:name="filterUserID"
+            app:argType="string"/>
         <action
-            android:id="@+id/action_homeFragment_to_productFragment"
+            android:id="@+id/action_navHome_to_navProductView"
             app:destination="@id/navProductView"/>
     </fragment>
 
@@ -30,7 +33,17 @@
         android:id="@+id/navProfile"
         android:name="dev.android.project.ui.profile.ProfileFragment"
         android:label="@string/menu_profile"
-        tools:layout="@layout/fragment_profile"/>
+        tools:layout="@layout/fragment_profile">
+        <argument
+            android:name="userID"
+            app:argType="string"/>
+        <action
+            android:id="@+id/action_navProfile_to_navHome"
+            app:destination="@id/navHome"/>
+        <action
+            android:id="@+id/action_navProfile_to_navProductView"
+            app:destination="@id/navProductView"/>
+    </fragment>
 
     <fragment
         android:id="@+id/navSettings"
@@ -52,6 +65,9 @@
         <argument
             android:name="productID"
             app:argType="string"/>
+        <action
+            android:id="@+id/action_navProductView_to_navProfile"
+            app:destination="@id/navProfile"/>
     </fragment>
 
 
