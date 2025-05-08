@@ -34,6 +34,7 @@
     <string name="hint_product_price">Product Price</string>
 
     <string name="product_asking_price">Asking Price:</string>
+    <string name="not_logged_in_offer">You must be logged in to make an offer</string>
     <string name="hint_store">Seller</string>
     <string name="action_send_offer">Send Offer</string>
     <string name="hint_product_price_offer">Offer Price</string>

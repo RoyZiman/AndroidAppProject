@@ -146,6 +146,17 @@
             android:layout_height="wrap_content"
             android:paddingVertical="@dimen/activity_vertical_margin">
 
+            <TextView
+                android:id="@+id/tvNotLoggedIn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/not_logged_in_offer"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
             <EditText
                 android:id="@+id/etPriceOffer"
                 android:layout_width="0dp"

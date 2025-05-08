@@ -117,9 +117,25 @@ public class ProductFragment extends Fragment
                 Toast.makeText(getContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
             }
 
-
+            setLoggedInVisibility();
             _loadingProgressBar.setVisibility(View.GONE);
         });
+    }
+
+    private void setLoggedInVisibility()
+    {
+        if (User.isLoggedIn())
+        {
+            _binding.btnSendOffer.setVisibility(View.VISIBLE);
+            _binding.etPriceOffer.setVisibility(View.VISIBLE);
+            _binding.tvNotLoggedIn.setVisibility(View.GONE);
+        }
+        else
+        {
+            _binding.btnSendOffer.setVisibility(View.GONE);
+            _binding.etPriceOffer.setVisibility(View.GONE);
+            _binding.tvNotLoggedIn.setVisibility(View.VISIBLE);
+        }
     }
 
 }
