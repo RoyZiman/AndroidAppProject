@@ -1,9 +1,15 @@
 package dev.android.project.ui.profile;
 
+import static android.app.Activity.RESULT_OK;
+
+import android.content.Intent;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -13,14 +19,63 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.google.android.material.navigation.NavigationView;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+
 import dev.android.project.R;
+import dev.android.project.data.model.User;
+import dev.android.project.data.providers.DBStorageManager;
 import dev.android.project.databinding.FragmentProfileBinding;
 import dev.android.project.ui.home.ProductRecyclerViewAdapter;
 
 public class ProfileFragment extends Fragment
 {
+    private static final int PICK_IMAGE_REQUEST = 1;
     private FragmentProfileBinding _binding;
     private ProfileViewModel _viewModel;
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @NonNull Intent data)
+    {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null)
+        {
+            Uri imageUri = data.getData();
+            try (InputStream inputStream = requireContext().getContentResolver().openInputStream(imageUri))
+            {
+                ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+                byte[] buffer = new byte[1024];
+                int length;
+                while ((length = inputStream.read(buffer)) != -1)
+                {
+                    byteArrayOutputStream.write(buffer, 0, length);
+                }
+                byte[] imageData = byteArrayOutputStream.toByteArray();
+
+                DBStorageManager.uploadProfilePicture(_viewModel.getUser().getValue().getId(), imageData)
+                                .addOnSuccessListener(task -> {
+                                    NavigationView navigationView = requireActivity().findViewById(R.id.nav_view);
+                                    View headerView = navigationView.getHeaderView(0);
+                                    ImageView menuProfileImage = headerView.findViewById(R.id.ivUserImage);
+                                    menuProfileImage.setImageBitmap(BitmapFactory.decodeByteArray(imageData,
+                                                                                                  0,
+                                                                                                  imageData.length));
+
+                                    _binding.ivUserImage.setImageBitmap(
+                                            BitmapFactory.decodeByteArray(imageData, 0, imageData.length));
+                                });
+
+
+            }
+            catch (IOException e)
+            {
+                e.printStackTrace();
+            }
+        }
+    }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -34,6 +89,17 @@ public class ProfileFragment extends Fragment
             {
                 _binding.tvUserName.setText(user.getName());
                 _binding.tvUserEmail.setText(user.getEmail());
+
+
+                if (User.isLoggedIn() && User.getCurrentUser().getId().equals(user.getId()))
+                {
+                    _binding.ivUserImage.setOnClickListener(v -> {
+                        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                        intent.setType("image/*");
+                        startActivityForResult(intent, PICK_IMAGE_REQUEST);
+                    });
+
+                }
             }
         });
 
@@ -71,6 +137,7 @@ public class ProfileFragment extends Fragment
             else
                 _viewModel.fetchUser(userId);
         }
+
 
         _binding.btnUserListings.setOnClickListener(v -> {
             Bundle bundle = new Bundle();

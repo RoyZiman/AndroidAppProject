@@ -57,6 +57,17 @@
         tools:layout_editor_absoluteX="16dp"
         tools:listitem="@layout/fragment_item_product"/>
 
+    <Button
+        android:id="@+id/btnUserListings"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="@dimen/activity_vertical_margin"
+        android:text="@string/action_show_profile_listings"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/listUserProducts"/>
+
+
     <ProgressBar
         android:id="@+id/loading"
         android:layout_width="wrap_content"
@@ -70,15 +81,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.3"/>
-
-    <Button
-        android:id="@+id/btnUserListings"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginVertical="@dimen/activity_vertical_margin"
-        android:text="@string/action_show_profile_listings"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/listUserProducts"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
