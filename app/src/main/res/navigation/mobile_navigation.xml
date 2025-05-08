@@ -34,6 +34,9 @@
         android:name="dev.android.project.ui.profile.ProfileFragment"
         android:label="@string/menu_profile"
         tools:layout="@layout/fragment_profile">
+        <argument
+            android:name="userID"
+            app:argType="string"/>
         <action
             android:id="@+id/action_navProfile_to_navHome"
             app:destination="@id/navHome"/>
@@ -62,6 +65,9 @@
         <argument
             android:name="productID"
             app:argType="string"/>
+        <action
+            android:id="@+id/action_navProductView_to_navProfile"
+            app:destination="@id/navProfile"/>
     </fragment>
 
 

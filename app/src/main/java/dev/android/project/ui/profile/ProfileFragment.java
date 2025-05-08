@@ -37,6 +37,13 @@ public class ProfileFragment extends Fragment
             }
         });
 
+        _viewModel.getProfilePicture().observe(getViewLifecycleOwner(), bitmap -> {
+            if (bitmap != null)
+            {
+                _binding.ivUserImage.setImageBitmap(bitmap);
+            }
+        });
+
         _viewModel.getProducts().observe(getViewLifecycleOwner(), products -> {
             _binding.listUserProducts.setAdapter(
                     new ProductRecyclerViewAdapter(products, R.id.action_navProfile_to_navProductView));
@@ -58,12 +65,11 @@ public class ProfileFragment extends Fragment
 
         if (_viewModel.getUser().getValue() == null)
         {
-            _viewModel.fetchUser();
-        }
-
-        if (_viewModel.getProducts().getValue() == null)
-        {
-            _viewModel.fetchUserProducts();
+            String userId = getArguments() != null ? getArguments().getString("userID") : null;
+            if (userId == null)
+                _viewModel.fetchUser();
+            else
+                _viewModel.fetchUser(userId);
         }
 
         _binding.btnUserListings.setOnClickListener(v -> {

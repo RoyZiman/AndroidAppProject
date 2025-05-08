@@ -11,7 +11,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
+import dev.android.project.R;
 import dev.android.project.data.model.User;
 import dev.android.project.data.providers.DBProductsManager;
 import dev.android.project.data.providers.DBStorageManager;
@@ -72,6 +74,14 @@ public class ProductFragment extends Fragment
             if (task.isSuccessful())
             {
                 _productViewModel.setProduct(task.getResult());
+                String sellerID = task.getResult().getStoreID();
+
+                _binding.ivUserImage.setOnClickListener(v -> {
+                    Bundle bundle = new Bundle();
+                    bundle.putString("userID", sellerID);
+                    Navigation.findNavController(v)
+                              .navigate(R.id.action_navProductView_to_navProfile, bundle);
+                });
 
                 // Fetch product preview
                 DBStorageManager.getProductPreview(productID).addOnSuccessListener(bitmap -> {
@@ -79,7 +89,6 @@ public class ProductFragment extends Fragment
                 });
 
                 // Fetch seller details
-                String sellerID = task.getResult().getStoreID(); // Assuming getSellerID() exists
                 DBUsersManager.getUser(sellerID).addOnCompleteListener(sellerTask -> {
                     if (sellerTask.isSuccessful())
                     {
@@ -93,9 +102,8 @@ public class ProductFragment extends Fragment
                 DBStorageManager.getProfilePicture(sellerID).addOnCompleteListener(sellerTask -> {
                     if (sellerTask.isSuccessful())
                     {
-                        DBStorageManager.getProfilePicture(sellerID).addOnSuccessListener(imageBitmap -> {
-                            _binding.ivUserImage.setImageBitmap(imageBitmap);
-                        });
+                        DBStorageManager.getProfilePicture(sellerID).addOnSuccessListener(
+                                imageBitmap -> _binding.ivUserImage.setImageBitmap(imageBitmap));
                     }
                     else
                     {
@@ -108,6 +116,7 @@ public class ProductFragment extends Fragment
             {
                 Toast.makeText(getContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
             }
+
 
             _loadingProgressBar.setVisibility(View.GONE);
         });
