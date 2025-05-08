@@ -11,10 +11,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-import dev.android.project.R;
 import dev.android.project.data.model.Product;
 import dev.android.project.data.providers.DBStorageManager;
-import dev.android.project.databinding.FragmentHomeBinding;
+import dev.android.project.databinding.FragmentItemProductBinding;
 
 /**
  * {@link RecyclerView.Adapter} that can display a {@link Product}.
@@ -23,16 +22,20 @@ public class ProductRecyclerViewAdapter extends RecyclerView.Adapter<ProductRecy
 {
 
     private final List<Product> mValues;
+    private final int mNavigationAction;
 
-    public ProductRecyclerViewAdapter(List<Product> items)
+    public ProductRecyclerViewAdapter(List<Product> items, int navigationAction)
     {
         mValues = items;
+        mNavigationAction = navigationAction;
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType)
     {
-        return new ViewHolder(FragmentHomeBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false));
+        return new ViewHolder(FragmentItemProductBinding.inflate(LayoutInflater.from(parent.getContext()),
+                                                                 parent,
+                                                                 false));
     }
 
     @Override
@@ -46,12 +49,12 @@ public class ProductRecyclerViewAdapter extends RecyclerView.Adapter<ProductRecy
         // Call the async getImage function and set the image to an ImageView (assuming you have an ImageView in your
         // layout)
         DBStorageManager.getProductPreview(holder.mItem.getID())
-                        .addOnSuccessListener(image -> holder.mImagePreview.setImageBitmap(image));
+                        .addOnSuccessListener(holder.mImagePreview::setImageBitmap);
 
         holder.itemView.setOnClickListener(v -> {
             Bundle bundle = new Bundle();
             bundle.putString("productID", holder.mItem.getID());
-            Navigation.findNavController(v).navigate(R.id.action_homeFragment_to_productFragment, bundle);
+            Navigation.findNavController(v).navigate(mNavigationAction, bundle);
         });
     }
 
@@ -61,7 +64,7 @@ public class ProductRecyclerViewAdapter extends RecyclerView.Adapter<ProductRecy
         return mValues.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder
+    public static class ViewHolder extends RecyclerView.ViewHolder
     {
         public final TextView mTitleView;
         public final TextView mDescView;
@@ -69,7 +72,7 @@ public class ProductRecyclerViewAdapter extends RecyclerView.Adapter<ProductRecy
         public final ImageView mImagePreview;
         public Product mItem;
 
-        public ViewHolder(FragmentHomeBinding binding)
+        public ViewHolder(FragmentItemProductBinding binding)
         {
             super(binding.getRoot());
             mTitleView = binding.tvProductTitle;

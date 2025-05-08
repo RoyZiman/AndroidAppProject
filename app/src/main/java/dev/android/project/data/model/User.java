@@ -14,7 +14,6 @@ public class User
     private final String _id;
     private final String _name;
     private final String _email;
-    private FirebaseUser user;
 
 
     public User(FirebaseUser user)

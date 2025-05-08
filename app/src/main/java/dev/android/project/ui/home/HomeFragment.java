@@ -9,22 +9,26 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.tasks.Task;
+
+import java.util.ArrayList;
+
+import dev.android.project.R;
+import dev.android.project.data.model.Product;
 import dev.android.project.data.providers.DBProductsManager;
-import dev.android.project.databinding.FragmentProductListBinding;
+import dev.android.project.databinding.FragmentHomeBinding;
 
 /**
  * A fragment representing a list of Items.
  */
 public class HomeFragment extends Fragment
 {
-    private static final String ARG_COLUMN_COUNT = "column-count";
-    private FragmentProductListBinding _binding;
-    private int mColumnCount = 2;
-
+    private FragmentHomeBinding _binding;
+    private String _filterUserID = null;
     private ProgressBar _loadingProgressBar;
 
     @SuppressWarnings("unused")
@@ -32,7 +36,6 @@ public class HomeFragment extends Fragment
     {
         HomeFragment fragment = new HomeFragment();
         Bundle args = new Bundle();
-        args.putInt(ARG_COLUMN_COUNT, columnCount);
         fragment.setArguments(args);
         return fragment;
     }
@@ -43,32 +46,53 @@ public class HomeFragment extends Fragment
         super.onCreate(savedInstanceState);
 
         if (getArguments() != null)
-            mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
+            _filterUserID = getArguments().getString("filterUserID");
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
     {
-        _binding = FragmentProductListBinding.inflate(inflater, container, false);
+        _binding = FragmentHomeBinding.inflate(inflater, container, false);
 
         View root = _binding.getRoot();
-        View listView = _binding.list;
+        RecyclerView listView = _binding.list;
 
 
         _loadingProgressBar = _binding.loading;
         _loadingProgressBar.setVisibility(View.VISIBLE);
+        
+        _binding.fabRemoveFilters.setVisibility(View.GONE);
+
+
+        if (_filterUserID != null)
+        {
+            _binding.fabRemoveFilters.setVisibility(View.VISIBLE);
+            _binding.fabRemoveFilters.setOnClickListener(v -> {
+                _filterUserID = null;
+                _binding.fabRemoveFilters.setVisibility(View.GONE);
+                Navigation.findNavController(v).popBackStack(R.id.navHome, true);
+                Navigation.findNavController(v).navigate(R.id.navHome);
+            });
+        }
 
         Context context = listView.getContext();
-        RecyclerView recyclerView = (RecyclerView)listView;
-        if (mColumnCount <= 1)
-            recyclerView.setLayoutManager(new LinearLayoutManager(context));
-        else
-            recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
 
-        DBProductsManager.getAllProducts().addOnCompleteListener(task -> {
+        listView.setLayoutManager(new GridLayoutManager(context, 2));
+
+
+        Task<ArrayList<Product>> productFetchTask;
+        if (_filterUserID != null)
+            productFetchTask = DBProductsManager.getAllProductsByUser(_filterUserID);
+        else
+            productFetchTask = DBProductsManager.getAllProducts();
+
+
+        productFetchTask.addOnCompleteListener(task -> {
             if (task.isSuccessful())
-                recyclerView.setAdapter(new ProductRecyclerViewAdapter(task.getResult()));
+                listView.setAdapter(
+                        new ProductRecyclerViewAdapter(task.getResult(), R.id.action_navHome_to_navProductView));
             else
                 Toast.makeText(getContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
             _loadingProgressBar.setVisibility(View.GONE);

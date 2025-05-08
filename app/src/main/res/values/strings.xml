@@ -43,6 +43,7 @@
     <string name="invalid_title">Title cannot be empty or too long</string>
     <string name="invalid_description">Description cannot be empty or too long</string>
     <string name="invalid_price">Invalid Price</string>
+    <string name="action_show_profile_listings">Show All User Listed Products</string>
 
 
 </resources>

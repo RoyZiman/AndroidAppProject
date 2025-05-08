@@ -1,9 +1,13 @@
 package dev.android.project.data.providers;
 
+import androidx.annotation.Nullable;
+
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.TaskCompletionSource;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.Filter;
+import com.google.firebase.firestore.Query;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -23,9 +27,17 @@ public class DBProductsManager
 
     public static Task<ArrayList<Product>> getAllProducts()
     {
-        TaskCompletionSource<ArrayList<Product>> taskCompletionSource = new TaskCompletionSource<>();
+        return getProducts(null);
+    }
 
-        _collectionRef.get().addOnCompleteListener(task -> {
+    private static Task<ArrayList<Product>> getProducts(@Nullable Filter filter)
+    {
+        TaskCompletionSource<ArrayList<Product>> taskCompletionSource = new TaskCompletionSource<>();
+        Query query = _collectionRef;
+        if (filter != null)
+            query = query.where(filter);
+
+        query.get().addOnCompleteListener(task -> {
             if (task.isSuccessful())
             {
                 ArrayList<Product> products = new ArrayList<>();
@@ -89,7 +101,7 @@ public class DBProductsManager
                     else
                         taskCompletionSource.setException(task.getException());
                 });
-        
+
         return taskCompletionSource.getTask();
     }
 
@@ -104,5 +116,8 @@ public class DBProductsManager
         }});
     }
 
-
+    public static Task<ArrayList<Product>> getAllProductsByUser(String userId)
+    {
+        return getProducts(Filter.equalTo(FIELD_STORE_ID, userId));
+    }
 }
