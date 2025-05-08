@@ -67,7 +67,7 @@ public class ProfileViewModel extends ViewModel
 
     private void fetchProfilePicture()
     {
-        DBStorageManager.getProfilePicture(User.getCurrentUser().getId())
+        DBStorageManager.getProfilePicture(_user.getValue().getId())
                         .addOnSuccessListener(bitmap -> _profilePicture.setValue(bitmap))
                         .addOnFailureListener(e -> _error.setValue(e.getMessage()));
     }
