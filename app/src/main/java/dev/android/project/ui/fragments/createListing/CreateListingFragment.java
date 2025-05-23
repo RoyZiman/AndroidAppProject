@@ -1,4 +1,4 @@
-package dev.android.project.ui.createListing;
+package dev.android.project.ui.fragments.createListing;
 
 import static android.app.Activity.RESULT_OK;
 

@@ -1,4 +1,4 @@
-package dev.android.project.ui.profile;
+package dev.android.project.ui.fragments.profile;
 
 import android.graphics.Bitmap;
 

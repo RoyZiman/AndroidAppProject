@@ -1,4 +1,4 @@
-package dev.android.project.ui.product;
+package dev.android.project.ui.fragments.product;
 
 import android.graphics.Bitmap;
 

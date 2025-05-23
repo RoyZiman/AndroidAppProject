@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:paddingHorizontal="@dimen/activity_horizontal_margin"
     android:paddingVertical="@dimen/activity_vertical_margin"
-    tools:context=".ui.profile.ProfileFragment">
+    tools:context=".ui.fragments.profile.ProfileFragment">
 
     <androidx.cardview.widget.CardView
 
@@ -53,7 +53,7 @@
         android:layout_marginVertical="@dimen/activity_vertical_margin"
         app:layoutManager="LinearLayoutManager"
         app:layout_constraintTop_toBottomOf="@+id/tvUserEmail"
-        tools:context=".ui.home.HomeFragment"
+        tools:context=".ui.fragments.home.HomeFragment"
         tools:layout_editor_absoluteX="16dp"
         tools:listitem="@layout/fragment_item_product"/>
 

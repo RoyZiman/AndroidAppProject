@@ -1,19 +1,23 @@
-package dev.android.project.ui.register;
+package dev.android.project.ui.fragments.login;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
-public class RegisterViewModelFactory implements ViewModelProvider.Factory
+/**
+ * ViewModel provider factory to instantiate LoginViewModel. Required given LoginViewModel has a non-empty constructor
+ */
+public class LoginViewModelFactory implements ViewModelProvider.Factory
 {
+
     @NonNull
     @Override
     @SuppressWarnings("unchecked")
     public <T extends ViewModel> T create(@NonNull Class<T> modelClass)
     {
-        if (modelClass.isAssignableFrom(RegisterViewModel.class))
+        if (modelClass.isAssignableFrom(LoginViewModel.class))
         {
-            return (T)new RegisterViewModel();
+            return (T)new LoginViewModel();
         }
         else
         {

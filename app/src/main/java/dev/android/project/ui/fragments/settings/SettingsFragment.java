@@ -1,4 +1,4 @@
-package dev.android.project.ui.settings;
+package dev.android.project.ui.fragments.settings;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

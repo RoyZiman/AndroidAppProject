@@ -1,4 +1,4 @@
-package dev.android.project.ui.profile;
+package dev.android.project.ui.fragments.profile;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -29,7 +29,7 @@ import dev.android.project.R;
 import dev.android.project.data.model.User;
 import dev.android.project.data.providers.DBStorageManager;
 import dev.android.project.databinding.FragmentProfileBinding;
-import dev.android.project.ui.home.ProductRecyclerViewAdapter;
+import dev.android.project.ui.fragments.home.ProductRecyclerViewAdapter;
 
 public class ProfileFragment extends Fragment
 {

@@ -1,4 +1,4 @@
-package dev.android.project.ui.home;
+package dev.android.project.ui.fragments.home;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -62,7 +62,7 @@ public class HomeFragment extends Fragment
 
         _loadingProgressBar = _binding.loading;
         _loadingProgressBar.setVisibility(View.VISIBLE);
-        
+
         _binding.fabRemoveFilters.setVisibility(View.GONE);
 
 

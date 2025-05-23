@@ -6,14 +6,14 @@
     android:name="dev.android.project.ui.ProductFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.home.HomeFragment">
+    tools:context=".ui.fragments.home.HomeFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layoutManager="LinearLayoutManager"
-        tools:context=".ui.home.HomeFragment"
+        tools:context=".ui.fragments.home.HomeFragment"
         tools:listitem="@layout/fragment_item_product"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton

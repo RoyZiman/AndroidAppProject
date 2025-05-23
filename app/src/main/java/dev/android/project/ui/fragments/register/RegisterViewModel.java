@@ -1,4 +1,4 @@
-package dev.android.project.ui.register;
+package dev.android.project.ui.fragments.register;
 
 import android.util.Patterns;
 

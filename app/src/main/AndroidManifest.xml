@@ -15,10 +15,10 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".ui.register.RegisterActivity"
+            android:name=".ui.fragments.register.RegisterActivity"
             android:exported="false"/>
         <activity
-            android:name=".ui.login.LoginActivity"
+            android:name=".ui.fragments.login.LoginActivity"
             android:exported="false"
             android:label="@string/title_activity_login"/>
         <activity

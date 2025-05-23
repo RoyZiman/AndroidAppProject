@@ -1,26 +1,22 @@
-package  dev.android.project.ui.login;
+package dev.android.project.ui.fragments.register;
 
 import androidx.annotation.Nullable;
 
-import com.google.firebase.auth.FirebaseUser;
-
 import dev.android.project.data.model.User;
 
-/**
- * Authentication result : success (user details) or error message.
- */
-class LoginResult {
+public class RegisterResult
+{
     @Nullable
     private User _success;
     @Nullable
     private String _error;
 
-    LoginResult(@Nullable String error)
+    RegisterResult(@Nullable String error)
     {
         _error = error;
     }
 
-    LoginResult(@Nullable User success)
+    RegisterResult(@Nullable User success)
     {
         _success = success;
     }

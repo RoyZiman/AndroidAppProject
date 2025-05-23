@@ -1,40 +1,46 @@
-package dev.android.project.ui.login;
+package dev.android.project.ui.fragments.login;
 
 import androidx.annotation.Nullable;
 
 /**
  * Data validation state of the login form.
  */
-class LoginFormState {
+class LoginFormState
+{
     @Nullable
-    private Integer _emailError;
+    private final Integer _emailError;
     @Nullable
-    private Integer _passwordError;
-    private boolean _isDataValid;
+    private final Integer _passwordError;
+    private final boolean _isDataValid;
 
-    LoginFormState(@Nullable Integer emailError, @Nullable Integer passwordError) {
+    LoginFormState(@Nullable Integer emailError, @Nullable Integer passwordError)
+    {
         _emailError = emailError;
         _passwordError = passwordError;
         _isDataValid = false;
     }
 
-    LoginFormState(boolean isDataValid) {
+    LoginFormState(boolean isDataValid)
+    {
         _emailError = null;
         _passwordError = null;
         _isDataValid = isDataValid;
     }
 
     @Nullable
-    Integer getEmailError() {
+    Integer getEmailError()
+    {
         return _emailError;
     }
 
     @Nullable
-    Integer getPasswordError() {
+    Integer getPasswordError()
+    {
         return _passwordError;
     }
 
-    boolean isDataValid() {
+    boolean isDataValid()
+    {
         return _isDataValid;
     }
 }

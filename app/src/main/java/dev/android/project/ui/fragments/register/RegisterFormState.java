@@ -1,4 +1,4 @@
-package dev.android.project.ui.register;
+package dev.android.project.ui.fragments.register;
 
 import androidx.annotation.Nullable;
 
@@ -36,7 +36,7 @@ public class RegisterFormState
     {
         return _displayNameError;
     }
-    
+
     @Nullable
     Integer getEmailError()
     {

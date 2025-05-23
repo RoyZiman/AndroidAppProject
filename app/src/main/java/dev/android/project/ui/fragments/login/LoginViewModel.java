@@ -1,4 +1,4 @@
-package dev.android.project.ui.login;
+package dev.android.project.ui.fragments.login;
 
 import android.util.Patterns;
 

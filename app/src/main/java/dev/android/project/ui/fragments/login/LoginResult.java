@@ -1,22 +1,25 @@
-package dev.android.project.ui.register;
+package dev.android.project.ui.fragments.login;
 
 import androidx.annotation.Nullable;
 
 import dev.android.project.data.model.User;
 
-public class RegisterResult
+/**
+ * Authentication result : success (user details) or error message.
+ */
+class LoginResult
 {
     @Nullable
     private User _success;
     @Nullable
     private String _error;
 
-    RegisterResult(@Nullable String error)
+    LoginResult(@Nullable String error)
     {
         _error = error;
     }
 
-    RegisterResult(@Nullable User success)
+    LoginResult(@Nullable User success)
     {
         _success = success;
     }

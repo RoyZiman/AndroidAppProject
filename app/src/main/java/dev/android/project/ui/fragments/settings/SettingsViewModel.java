@@ -1,4 +1,4 @@
-package dev.android.project.ui.settings;
+package dev.android.project.ui.fragments.settings;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

@@ -1,4 +1,4 @@
-package dev.android.project.ui.createListing;
+package dev.android.project.ui.fragments.createListing;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

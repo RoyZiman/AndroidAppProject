@@ -1,4 +1,4 @@
-package dev.android.project.ui.register;
+package dev.android.project.ui.fragments.register;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,7 +17,7 @@ import androidx.lifecycle.ViewModelProvider;
 import dev.android.project.R;
 import dev.android.project.data.model.User;
 import dev.android.project.databinding.ActivityRegisterBinding;
-import dev.android.project.ui.login.LoginActivity;
+import dev.android.project.ui.fragments.login.LoginActivity;
 
 public class RegisterActivity extends AppCompatActivity
 {
