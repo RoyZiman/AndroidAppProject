@@ -27,7 +27,7 @@ public class ProfilePictureImageView extends CardView
         setRadius((float)size / 2);
         LayoutParams params = new LayoutParams(size, size);
         setLayoutParams(params);
-        setCardElevation(0);
+        setCardElevation(5);
         setUseCompatPadding(true);
 
         imageView = new ShapeableImageView(context);
