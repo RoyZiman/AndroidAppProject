@@ -40,8 +40,12 @@
     <string name="action_send_offer">Send Offer</string>
     <string name="hint_product_price_offer">Offer Price</string>
 
-    <string name="action_reject_offer">Reject Offer</string>
-    <string name="action_accept_offer">Accept Offer</string>
+    <string name="hint_buyer">Buyer</string>
+    <string name="offering_price_label">Offering Price:</string>
+    <string name="offering_price">Price</string>
+    <string name="notification_title">Title</string>
+    <string name="notification_content">Notification Content</string>
+
 
     <string name="no_logged_in_create_listing">You must be logged in to create a listing</string>
     <string name="invalid_image">Invalid Image</string>
