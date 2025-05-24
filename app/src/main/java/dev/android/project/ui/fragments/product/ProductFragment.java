@@ -13,8 +13,13 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
+import com.google.firebase.Timestamp;
+
 import dev.android.project.R;
+import dev.android.project.data.model.Product;
 import dev.android.project.data.model.User;
+import dev.android.project.data.model.notifications.Notification;
+import dev.android.project.data.providers.DBNotificationManager;
 import dev.android.project.data.providers.DBProductsManager;
 import dev.android.project.data.providers.DBStorageManager;
 import dev.android.project.data.providers.DBUsersManager;
@@ -54,6 +59,59 @@ public class ProductFragment extends Fragment
                              if (bitmap != null)
                                  _binding.ivProductPreview.setImageBitmap(bitmap);
                          });
+
+
+        _binding.btnSendOffer.setEnabled(false);
+
+        _binding.etPriceOffer.addTextChangedListener(new android.text.TextWatcher()
+        {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count)
+            {
+                _binding.btnSendOffer.setEnabled(!s.toString().trim().isEmpty());
+            }
+
+            @Override
+            public void afterTextChanged(android.text.Editable s) {}
+        });
+
+
+        _binding.btnSendOffer.setOnClickListener(v -> {
+
+            String offerPrice = _binding.etPriceOffer.getText()
+                                                     .toString()
+                                                     .trim();
+            if (offerPrice.isEmpty())
+            {
+                Toast.makeText(getContext(), "Please enter a price", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            Product product = _productViewModel.getProduct();
+
+            Notification notification = new Notification(
+                    "New Buy Offer",
+                    String.format("%s Offers %.2f$ for %s",
+                                  User.getCurrentUser().getName(),
+                                  Double.parseDouble(offerPrice),
+                                  _productViewModel.getProductTitle().getValue()),
+                    false,
+                    User.getCurrentUser().getId(),
+                    product.getStoreID(),
+                    product.getId(),
+                    new Timestamp(System.currentTimeMillis() / 1000, 0)
+            );
+
+            DBNotificationManager.sendNotification(notification).addOnCompleteListener(task -> {
+                if (task.isSuccessful())
+                    Navigation.findNavController(v).navigate(R.id.action_navProductView_to_navHome);
+                else
+                    Toast.makeText(getContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+            });
+        });
 
         return root;
     }

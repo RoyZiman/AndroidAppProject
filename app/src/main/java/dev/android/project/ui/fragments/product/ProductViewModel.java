@@ -14,6 +14,8 @@ public class ProductViewModel extends ViewModel
     private final MutableLiveData<String> mProductDescription;
     private final MutableLiveData<String> mProductPrice;
 
+    private final MutableLiveData<Product> mProduct;
+
 
     public ProductViewModel()
     {
@@ -21,6 +23,7 @@ public class ProductViewModel extends ViewModel
         mProductTitle = new MutableLiveData<>();
         mProductDescription = new MutableLiveData<>();
         mProductPrice = new MutableLiveData<>();
+        mProduct = new MutableLiveData<>();
 
         mProductTitle.setValue("Product Title");
         mProductDescription.setValue("Product Description");
@@ -47,9 +50,16 @@ public class ProductViewModel extends ViewModel
         return mProductPrice;
     }
 
+    public Product getProduct()
+    {
+        return mProduct.getValue();
+    }
+
 
     public void setProduct(Product product)
     {
+        mProduct.setValue(product);
+
         mProductTitle.setValue(product.getTitle());
         mProductDescription.setValue(product.getDescription());
         mProductPrice.setValue(product.getPriceAsString());

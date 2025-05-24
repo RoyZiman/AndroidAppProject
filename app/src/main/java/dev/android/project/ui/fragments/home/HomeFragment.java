@@ -91,8 +91,8 @@ public class HomeFragment extends Fragment
 
         productFetchTask.addOnCompleteListener(task -> {
             if (task.isSuccessful())
-                listView.setAdapter(
-                        new ProductRecyclerViewAdapter(task.getResult(), R.id.action_navHome_to_navProductView));
+                listView.setAdapter(new ProductRecyclerViewAdapter(task.getResult(),
+                                                                   R.id.action_navHome_to_navProductView));
             else
                 Toast.makeText(getContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
             _loadingProgressBar.setVisibility(View.GONE);

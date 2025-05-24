@@ -68,7 +68,16 @@
         <action
             android:id="@+id/action_navProductView_to_navProfile"
             app:destination="@id/navProfile"/>
+        <action
+            android:id="@+id/action_navProductView_to_navHome"
+            app:destination="@id/navHome"/>
     </fragment>
+
+    <fragment
+        android:id="@+id/navInbox"
+        android:name="dev.android.project.ui.fragments.inbox.InboxFragment"
+        android:label="@string/menu_inbox"
+        tools:layout="@layout/fragment_inbox"/>
 
 
 </navigation>

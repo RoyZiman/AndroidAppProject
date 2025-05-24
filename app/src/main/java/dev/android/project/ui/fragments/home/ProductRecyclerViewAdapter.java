@@ -46,8 +46,6 @@ public class ProductRecyclerViewAdapter extends RecyclerView.Adapter<ProductRecy
         holder.mDescView.setText(mValues.get(position).getDescription());
         holder.mPriceView.setText(mValues.get(position).getPriceAsString());
 
-        // Call the async getImage function and set the image to an ImageView (assuming you have an ImageView in your
-        // layout)
         DBStorageManager.getProductPreview(holder.mItem.getId())
                         .addOnSuccessListener(holder.mImagePreview::setImageBitmap);
 

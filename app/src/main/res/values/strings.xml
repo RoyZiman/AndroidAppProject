@@ -8,6 +8,7 @@
 
     <string name="menu_home">Home</string>
     <string name="menu_create_listing">Create Listing</string>
+    <string name="menu_inbox">Inbox</string>
     <string name="menu_profile">Profile</string>
     <string name="menu_settings">Settings</string>
     <string name="menu_login">Login</string>
@@ -38,6 +39,9 @@
     <string name="hint_store">Seller</string>
     <string name="action_send_offer">Send Offer</string>
     <string name="hint_product_price_offer">Offer Price</string>
+
+    <string name="action_reject_offer">Reject Offer</string>
+    <string name="action_accept_offer">Accept Offer</string>
 
     <string name="no_logged_in_create_listing">You must be logged in to create a listing</string>
     <string name="invalid_image">Invalid Image</string>
