@@ -28,8 +28,8 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import dev.android.project.R;
-import dev.android.project.data.model.Product;
-import dev.android.project.data.model.User;
+import dev.android.project.data.models.Product;
+import dev.android.project.data.models.User;
 import dev.android.project.databinding.FragmentCreateListingBinding;
 
 public class CreateListingFragment extends Fragment

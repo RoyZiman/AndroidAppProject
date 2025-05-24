@@ -12,7 +12,7 @@ import com.google.firebase.firestore.Query;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import dev.android.project.data.model.Product;
+import dev.android.project.data.models.Product;
 import dev.android.project.data.providers.Firebase.FBFirestore;
 
 public class DBProductsManager

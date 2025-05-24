@@ -2,7 +2,7 @@ package dev.android.project.ui.fragments.register;
 
 import androidx.annotation.Nullable;
 
-import dev.android.project.data.model.User;
+import dev.android.project.data.models.User;
 
 public class RegisterResult
 {

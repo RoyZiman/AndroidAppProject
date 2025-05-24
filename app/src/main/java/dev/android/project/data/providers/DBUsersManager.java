@@ -7,7 +7,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 
 import java.util.HashMap;
 
-import dev.android.project.data.model.User;
+import dev.android.project.data.models.User;
 import dev.android.project.data.providers.Firebase.FBFirestore;
 
 public class DBUsersManager

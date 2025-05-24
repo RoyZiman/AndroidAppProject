@@ -1,4 +1,4 @@
-package dev.android.project.data.model;
+package dev.android.project.data.models;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;

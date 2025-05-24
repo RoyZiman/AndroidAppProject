@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModel;
 import com.google.android.gms.tasks.Task;
 
 import dev.android.project.R;
-import dev.android.project.data.model.Product;
+import dev.android.project.data.models.Product;
 import dev.android.project.data.providers.DBProductsManager;
 import dev.android.project.data.providers.DBStorageManager;
 

@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-import dev.android.project.data.model.Product;
+import dev.android.project.data.models.Product;
 import dev.android.project.data.providers.DBStorageManager;
 import dev.android.project.databinding.FragmentItemProductBinding;
 

@@ -3,7 +3,7 @@ package dev.android.project.ui.fragments.notification;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import dev.android.project.data.model.notifications.Notification;
+import dev.android.project.data.models.notifications.Notification;
 
 public class NotificationViewModel extends ViewModel
 {
@@ -37,7 +37,7 @@ public class NotificationViewModel extends ViewModel
         return mPriceOffered;
     }
 
-    
+
     public void setNotification(Notification notification)
     {
         mNotificationTitle.setValue(notification.getTitle());

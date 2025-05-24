@@ -9,8 +9,8 @@ import com.google.firebase.firestore.Query;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import dev.android.project.data.model.User;
-import dev.android.project.data.model.notifications.Notification;
+import dev.android.project.data.models.User;
+import dev.android.project.data.models.notifications.Notification;
 import dev.android.project.data.providers.Firebase.FBFirestore;
 
 public class DBNotificationManager

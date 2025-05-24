@@ -5,7 +5,7 @@ import android.graphics.Bitmap;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import dev.android.project.data.model.Product;
+import dev.android.project.data.models.Product;
 
 public class ProductViewModel extends ViewModel
 {

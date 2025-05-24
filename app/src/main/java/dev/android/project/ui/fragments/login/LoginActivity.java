@@ -17,7 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
 import dev.android.project.R;
-import dev.android.project.data.model.User;
+import dev.android.project.data.models.User;
 import dev.android.project.databinding.ActivityLoginBinding;
 import dev.android.project.ui.fragments.register.RegisterActivity;
 

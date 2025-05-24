@@ -8,8 +8,8 @@ import androidx.lifecycle.ViewModel;
 
 import java.util.ArrayList;
 
-import dev.android.project.data.model.Product;
-import dev.android.project.data.model.User;
+import dev.android.project.data.models.Product;
+import dev.android.project.data.models.User;
 import dev.android.project.data.providers.DBProductsManager;
 import dev.android.project.data.providers.DBStorageManager;
 import dev.android.project.data.providers.DBUsersManager;

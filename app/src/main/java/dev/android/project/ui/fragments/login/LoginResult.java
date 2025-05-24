@@ -2,7 +2,7 @@ package dev.android.project.ui.fragments.login;
 
 import androidx.annotation.Nullable;
 
-import dev.android.project.data.model.User;
+import dev.android.project.data.models.User;
 
 /**
  * Authentication result : success (user details) or error message.

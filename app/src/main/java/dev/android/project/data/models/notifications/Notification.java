@@ -1,4 +1,4 @@
-package dev.android.project.data.model.notifications;
+package dev.android.project.data.models.notifications;
 
 import com.google.firebase.Timestamp;
 

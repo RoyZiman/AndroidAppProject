@@ -13,7 +13,7 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.navigation.NavigationView;
 
-import dev.android.project.data.model.User;
+import dev.android.project.data.models.User;
 import dev.android.project.data.providers.DBStorageManager;
 import dev.android.project.databinding.ActivityMainBinding;
 import dev.android.project.ui.custom.ProfilePictureImageView;

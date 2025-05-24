@@ -9,7 +9,7 @@ import androidx.lifecycle.ViewModel;
 import com.google.firebase.auth.FirebaseAuth;
 
 import dev.android.project.R;
-import dev.android.project.data.model.User;
+import dev.android.project.data.models.User;
 import dev.android.project.data.providers.Firebase.FBAuth;
 
 public class LoginViewModel extends ViewModel

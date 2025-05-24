@@ -13,7 +13,7 @@ import com.google.android.material.R;
 
 import java.util.List;
 
-import dev.android.project.data.model.notifications.Notification;
+import dev.android.project.data.models.notifications.Notification;
 import dev.android.project.data.providers.DBStorageManager;
 import dev.android.project.databinding.FragmentItemNotificationBinding;
 import dev.android.project.ui.custom.ProfilePictureImageView;

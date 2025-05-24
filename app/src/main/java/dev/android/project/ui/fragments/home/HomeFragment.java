@@ -18,7 +18,7 @@ import com.google.android.gms.tasks.Task;
 import java.util.ArrayList;
 
 import dev.android.project.R;
-import dev.android.project.data.model.Product;
+import dev.android.project.data.models.Product;
 import dev.android.project.data.providers.DBProductsManager;
 import dev.android.project.databinding.FragmentHomeBinding;
 

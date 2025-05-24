@@ -26,7 +26,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import dev.android.project.R;
-import dev.android.project.data.model.User;
+import dev.android.project.data.models.User;
 import dev.android.project.data.providers.DBStorageManager;
 import dev.android.project.databinding.FragmentProfileBinding;
 import dev.android.project.ui.fragments.home.ProductRecyclerViewAdapter;
