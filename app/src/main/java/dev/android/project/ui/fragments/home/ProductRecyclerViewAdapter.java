@@ -48,12 +48,12 @@ public class ProductRecyclerViewAdapter extends RecyclerView.Adapter<ProductRecy
 
         // Call the async getImage function and set the image to an ImageView (assuming you have an ImageView in your
         // layout)
-        DBStorageManager.getProductPreview(holder.mItem.getID())
+        DBStorageManager.getProductPreview(holder.mItem.getId())
                         .addOnSuccessListener(holder.mImagePreview::setImageBitmap);
 
         holder.itemView.setOnClickListener(v -> {
             Bundle bundle = new Bundle();
-            bundle.putString("productID", holder.mItem.getID());
+            bundle.putString("productID", holder.mItem.getId());
             Navigation.findNavController(v).navigate(mNavigationAction, bundle);
         });
     }

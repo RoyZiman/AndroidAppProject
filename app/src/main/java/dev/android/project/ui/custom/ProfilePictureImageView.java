@@ -21,14 +21,12 @@ public class ProfilePictureImageView extends CardView
 
     private void init(Context context)
     {
-        int size = isInEditMode() ? 100 : getResources().getDimensionPixelSize(
+        int size = isInEditMode() ? 200 : getResources().getDimensionPixelSize(
                 context.getResources().getIdentifier("profile_picture_size", "dimen", context.getPackageName())
         );
         setRadius((float)size / 2);
         LayoutParams params = new LayoutParams(size, size);
-        setLayoutParams(params);
         setCardElevation(5);
-        setUseCompatPadding(true);
 
         imageView = new ShapeableImageView(context);
         imageView.setLayoutParams(params);

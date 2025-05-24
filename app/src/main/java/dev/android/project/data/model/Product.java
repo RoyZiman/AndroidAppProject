@@ -1,11 +1,7 @@
 package dev.android.project.data.model;
 
-import java.time.LocalDateTime;
-
 public class Product
 {
-    private final int _stock;
-    private final LocalDateTime _dateAdded;
     private final String _storeID;
     private final String _description;
     private final double _price;
@@ -17,17 +13,15 @@ public class Product
         _title = title;
         _description = description;
         _price = price;
-        _stock = 0;
-        _dateAdded = LocalDateTime.now();
         _storeID = storeID;
     }
 
-    public String getID()
+    public String getId()
     {
         return _id;
     }
 
-    public Product setID(String id)
+    public Product setId(String id)
     {
         _id = id;
         return this;
@@ -51,16 +45,6 @@ public class Product
     public String getPriceAsString()
     {
         return "$" + _price;
-    }
-
-    public int getStock()
-    {
-        return _stock;
-    }
-
-    public LocalDateTime getDateAdded()
-    {
-        return _dateAdded;
     }
 
     public String getStoreID()

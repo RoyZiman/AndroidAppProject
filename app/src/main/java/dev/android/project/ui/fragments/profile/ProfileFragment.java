@@ -59,12 +59,12 @@ public class ProfileFragment extends Fragment
                                 .addOnSuccessListener(task -> {
                                     NavigationView navigationView = requireActivity().findViewById(R.id.nav_view);
                                     View headerView = navigationView.getHeaderView(0);
-                                    ImageView menuProfileImage = headerView.findViewById(R.id.ivUserImage);
+                                    ImageView menuProfileImage = headerView.findViewById(R.id.ivProfilePicture);
                                     menuProfileImage.setImageBitmap(BitmapFactory.decodeByteArray(imageData,
                                                                                                   0,
                                                                                                   imageData.length));
 
-                                    _binding.ivUserImage.setImageBitmap(
+                                    _binding.ivProfilePicture.setImageBitmap(
                                             BitmapFactory.decodeByteArray(imageData, 0, imageData.length));
                                 });
 
@@ -93,7 +93,7 @@ public class ProfileFragment extends Fragment
 
                 if (User.isLoggedIn() && User.getCurrentUser().getId().equals(user.getId()))
                 {
-                    _binding.ivUserImage.setOnClickListener(v -> {
+                    _binding.ivProfilePicture.setOnClickListener(v -> {
                         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
                         intent.setType("image/*");
                         startActivityForResult(intent, PICK_IMAGE_REQUEST);
@@ -106,7 +106,7 @@ public class ProfileFragment extends Fragment
         _viewModel.getProfilePicture().observe(getViewLifecycleOwner(), bitmap -> {
             if (bitmap != null)
             {
-                _binding.ivUserImage.setImageBitmap(bitmap);
+                _binding.ivProfilePicture.setImageBitmap(bitmap);
             }
         });
 

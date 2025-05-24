@@ -72,7 +72,7 @@
                 android:text="@string/hint_store"
                 android:textSize="@dimen/text_size_body"
                 android:textStyle="bold"
-                app:layout_constraintStart_toEndOf="@+id/cardUserImage"
+                app:layout_constraintStart_toEndOf="@+id/ivProfilePicture"
                 app:layout_constraintTop_toBottomOf="@+id/tvProductDescription"/>
 
             <TextView
@@ -83,7 +83,7 @@
                 android:layout_marginVertical="@dimen/activity_vertical_margin"
                 android:text="@string/product_asking_price"
                 app:layout_constraintEnd_toStartOf="@id/tvProductPrice"
-                app:layout_constraintStart_toEndOf="@+id/cardUserImage"
+                app:layout_constraintStart_toEndOf="@+id/ivProfilePicture"
                 app:layout_constraintTop_toBottomOf="@+id/tvProductSeller"/>
 
             <TextView
@@ -101,28 +101,14 @@
                 app:layout_constraintStart_toEndOf="@id/tvProductPriceLabel"
                 app:layout_constraintTop_toTopOf="@+id/tvProductPriceLabel"/>
 
-            <!-- Product Price Label TextView -->
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardUserImage"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
+            <dev.android.project.ui.custom.ProfilePictureImageView
+                android:id="@+id/ivProfilePicture"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
-                android:layout_marginVertical="@dimen/activity_vertical_margin"
-                app:cardBackgroundColor="?attr/colorSurface"
-                app:cardCornerRadius="35dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvProductDescription">
-
-                <com.google.android.material.imageview.ShapeableImageView
-                    android:id="@+id/ivUserImage"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:foreground="?android:attr/selectableItemBackground"
-                    android:scaleType="centerCrop"
-                    app:srcCompat="@drawable/ic_nav_profile"/>
-            </androidx.cardview.widget.CardView>
+                app:layout_constraintTop_toBottomOf="@+id/tvProductDescription"/>
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -134,7 +120,7 @@
         style="@style/ThemeOverlay.AppCompat"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:elevation="@dimen/image_view_elevation"
+        android:elevation="@dimen/card_view_overlay_elevation"
         app:cardBackgroundColor="?attr/colorBackgroundFloating"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -183,7 +169,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
-    
+
     <ProgressBar
         android:id="@+id/loading"
         android:layout_width="wrap_content"

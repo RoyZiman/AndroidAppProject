@@ -76,7 +76,7 @@ public class ProductFragment extends Fragment
                 _productViewModel.setProduct(task.getResult());
                 String sellerID = task.getResult().getStoreID();
 
-                _binding.ivUserImage.setOnClickListener(v -> {
+                _binding.ivProfilePicture.setOnClickListener(v -> {
                     Bundle bundle = new Bundle();
                     bundle.putString("userID", sellerID);
                     Navigation.findNavController(v)
@@ -103,7 +103,7 @@ public class ProductFragment extends Fragment
                     if (sellerTask.isSuccessful())
                     {
                         DBStorageManager.getProfilePicture(sellerID).addOnSuccessListener(
-                                imageBitmap -> _binding.ivUserImage.setImageBitmap(imageBitmap));
+                                imageBitmap -> _binding.ivProfilePicture.setImageBitmap(imageBitmap));
                     }
                     else
                     {

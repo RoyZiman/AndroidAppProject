@@ -2,7 +2,6 @@ package dev.android.project;
 
 import android.os.Bundle;
 import android.view.Menu;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,6 +16,7 @@ import com.google.android.material.navigation.NavigationView;
 import dev.android.project.data.model.User;
 import dev.android.project.data.providers.DBStorageManager;
 import dev.android.project.databinding.ActivityMainBinding;
+import dev.android.project.ui.custom.ProfilePictureImageView;
 
 public class MainActivity extends AppCompatActivity
 {
@@ -59,6 +59,7 @@ public class MainActivity extends AppCompatActivity
 
     private void updateNavigationMenu(NavigationView navigationView)
     {
+
         Menu navMenu = navigationView.getMenu();
         if (User.isLoggedIn())
         {
@@ -82,7 +83,7 @@ public class MainActivity extends AppCompatActivity
         {
             TextView tvUsername = navigationView.getHeaderView(0).findViewById(R.id.tvUserName);
             TextView tvEmail = navigationView.getHeaderView(0).findViewById(R.id.tvUserEmail);
-            ImageView ivUserImage = navigationView.getHeaderView(0).findViewById(R.id.ivUserImage);
+            ProfilePictureImageView ivUserImage = navigationView.getHeaderView(0).findViewById(R.id.ivProfilePicture);
             tvUsername.setText(User.getCurrentUser().getName());
             tvEmail.setText(User.getCurrentUser().getEmail());
 
