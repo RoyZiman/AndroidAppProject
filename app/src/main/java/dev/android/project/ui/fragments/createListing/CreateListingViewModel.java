@@ -26,7 +26,7 @@ public class CreateListingViewModel extends ViewModel
     public Task<Product> Post(Product product, byte[] imageData)
     {
         return DBProductsManager.addProduct(product).addOnSuccessListener(uploadedProduct -> {
-            DBStorageManager.uploadProductPreview(uploadedProduct.getID(), imageData);
+            DBStorageManager.uploadProductPreview(uploadedProduct.getId(), imageData);
         });
 
     }

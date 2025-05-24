@@ -47,7 +47,7 @@ public class DBProductsManager
                                              document.getString(FIELD_DESCRIPTION),
                                              document.getDouble(FIELD_PRICE),
                                              document.getString(FIELD_STORE_ID))
-                                         .setID(document.getId()));
+                                         .setId(document.getId()));
                 }
                 taskCompletionSource.setResult(products);
             }
@@ -71,7 +71,7 @@ public class DBProductsManager
                                     document.getString(FIELD_DESCRIPTION),
                                     document.getDouble(FIELD_PRICE),
                                     document.getString(FIELD_STORE_ID))
-                                .setID(document.getId()));
+                                .setId(document.getId()));
             }
             else
                 taskCompletionSource.setException(task.getException());
@@ -95,7 +95,7 @@ public class DBProductsManager
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful())
                     {
-                        product.setID(task.getResult().getId());
+                        product.setId(task.getResult().getId());
                         taskCompletionSource.setResult(product);
                     }
                     else
@@ -107,7 +107,7 @@ public class DBProductsManager
 
     public static void setProduct(Product product)
     {
-        _collectionRef.document(product.getID()).set(new HashMap<>()
+        _collectionRef.document(product.getId()).set(new HashMap<>()
         {{
             put(FIELD_TITLE, product.getTitle());
             put(FIELD_DESCRIPTION, product.getDescription());
