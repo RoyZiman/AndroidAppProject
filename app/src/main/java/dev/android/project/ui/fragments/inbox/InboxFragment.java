@@ -19,11 +19,11 @@ import java.util.ArrayList;
 
 import dev.android.project.data.model.notifications.Notification;
 import dev.android.project.data.providers.DBNotificationManager;
-import dev.android.project.databinding.FragmentHomeBinding;
+import dev.android.project.databinding.FragmentInboxBinding;
 
 public class InboxFragment extends Fragment
 {
-    private FragmentHomeBinding _binding;
+    private FragmentInboxBinding _binding;
     private ProgressBar _loadingProgressBar;
 
     @Override
@@ -31,7 +31,7 @@ public class InboxFragment extends Fragment
                              @Nullable Bundle savedInstanceState)
     {
 
-        _binding = FragmentHomeBinding.inflate(inflater, container, false);
+        _binding = FragmentInboxBinding.inflate(inflater, container, false);
 
         View root = _binding.getRoot();
         RecyclerView listView = _binding.list;

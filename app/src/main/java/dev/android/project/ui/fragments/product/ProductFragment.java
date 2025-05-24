@@ -38,7 +38,6 @@ public class ProductFragment extends Fragment
         _productViewModel = new ViewModelProvider(this).get(ProductViewModel.class);
 
         _binding = FragmentProductBinding.inflate(inflater, container, false);
-        View root = _binding.getRoot();
 
         if (getArguments() != null)
         {
@@ -98,6 +97,7 @@ public class ProductFragment extends Fragment
                                   User.getCurrentUser().getName(),
                                   Double.parseDouble(offerPrice),
                                   _productViewModel.getProductTitle().getValue()),
+                    Double.parseDouble(offerPrice),
                     false,
                     User.getCurrentUser().getId(),
                     product.getStoreID(),
@@ -113,7 +113,7 @@ public class ProductFragment extends Fragment
             });
         });
 
-        return root;
+        return _binding.getRoot();
     }
 
     @Override
@@ -137,8 +137,7 @@ public class ProductFragment extends Fragment
                 _binding.ivProfilePicture.setOnClickListener(v -> {
                     Bundle bundle = new Bundle();
                     bundle.putString("userID", sellerID);
-                    Navigation.findNavController(v)
-                              .navigate(R.id.action_navProductView_to_navProfile, bundle);
+                    Navigation.findNavController(v).navigate(R.id.action_navProductView_to_navProfile, bundle);
                 });
 
                 // Fetch product preview

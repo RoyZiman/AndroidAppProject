@@ -46,7 +46,12 @@ public class HomeFragment extends Fragment
         super.onCreate(savedInstanceState);
 
         if (getArguments() != null)
+        {
             _filterUserID = getArguments().getString("filterUserID");
+            if (_filterUserID != null && _filterUserID.isEmpty())
+                _filterUserID = null;
+
+        }
 
     }
 

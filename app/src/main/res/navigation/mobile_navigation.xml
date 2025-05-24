@@ -77,7 +77,23 @@
         android:id="@+id/navInbox"
         android:name="dev.android.project.ui.fragments.inbox.InboxFragment"
         android:label="@string/menu_inbox"
-        tools:layout="@layout/fragment_inbox"/>
+        tools:layout="@layout/fragment_inbox">
+        <action
+            android:id="@+id/action_navInbox_to_navNotification"
+            app:destination="@id/navNotification"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/navNotification"
+        android:name="dev.android.project.ui.fragments.notification.NotificationFragment"
+        tools:layout="@layout/fragment_notification">
+        <argument
+            android:name="notificationID"
+            app:argType="string"/>
+        <action
+            android:id="@+id/action_navNotification_to_navProfile"
+            app:destination="@id/navProfile"/>
+    </fragment>
 
 
 </navigation>

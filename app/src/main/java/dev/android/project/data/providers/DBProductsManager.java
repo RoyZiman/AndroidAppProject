@@ -42,13 +42,8 @@ public class DBProductsManager
             {
                 ArrayList<Product> products = new ArrayList<>();
                 for (DocumentSnapshot document : task.getResult().getDocuments())
-                {
-                    products.add(new Product(document.getString(FIELD_TITLE),
-                                             document.getString(FIELD_DESCRIPTION),
-                                             document.getDouble(FIELD_PRICE),
-                                             document.getString(FIELD_STORE_ID))
-                                         .setId(document.getId()));
-                }
+                    products.add(documentToProduct(document));
+
                 taskCompletionSource.setResult(products);
             }
             else
@@ -56,6 +51,15 @@ public class DBProductsManager
         });
 
         return taskCompletionSource.getTask();
+    }
+
+    private static Product documentToProduct(DocumentSnapshot document)
+    {
+        return new Product(document.getString(FIELD_TITLE),
+                           document.getString(FIELD_DESCRIPTION),
+                           document.getDouble(FIELD_PRICE),
+                           document.getString(FIELD_STORE_ID))
+                .setId(document.getId());
     }
 
     public static Task<Product> getProduct(String id)
@@ -66,12 +70,7 @@ public class DBProductsManager
             if (task.isSuccessful())
             {
                 DocumentSnapshot document = task.getResult();
-                taskCompletionSource.setResult(
-                        new Product(document.getString(FIELD_TITLE),
-                                    document.getString(FIELD_DESCRIPTION),
-                                    document.getDouble(FIELD_PRICE),
-                                    document.getString(FIELD_STORE_ID))
-                                .setId(document.getId()));
+                taskCompletionSource.setResult(documentToProduct(document));
             }
             else
                 taskCompletionSource.setException(task.getException());

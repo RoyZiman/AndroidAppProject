@@ -6,6 +6,7 @@ public class Notification
 {
     private final String _title;
     private final String _content;
+    private final double _priceOffered;
     private final boolean _isRead;
     private final String _senderId;
     private final String _receiverId;
@@ -14,15 +15,18 @@ public class Notification
     private String _id;
 
     public Notification(String title,
-                        String content,
+                        String content, double priceOffered,
                         boolean isRead,
                         String senderId,
                         String receiverId,
                         String productId,
                         Timestamp timestamp)
     {
+
+        // Todo: Force baked in text for title and content
         _title = title;
         _content = content;
+        _priceOffered = priceOffered;
         _isRead = isRead;
         _senderId = senderId;
         _receiverId = receiverId;
@@ -49,6 +53,11 @@ public class Notification
     public String getContent()
     {
         return _content;
+    }
+
+    public double getPriceOffered()
+    {
+        return _priceOffered;
     }
 
     public boolean isRead()

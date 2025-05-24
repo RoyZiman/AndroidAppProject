@@ -1,10 +1,12 @@
 package dev.android.project.ui.fragments.inbox;
 
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.R;
@@ -51,7 +53,10 @@ public class NotificationRecyclerViewAdapter extends RecyclerView.Adapter<Notifi
                         .addOnSuccessListener(holder.mProfilePictureImageView::setImageBitmap);
 
         holder.itemView.setOnClickListener(v -> {
-            // Todo: Handle the click event for the notification item
+            Bundle bundle = new Bundle();
+            bundle.putString("notificationID", holder.mItem.getId());
+            Navigation.findNavController(v)
+                      .navigate(dev.android.project.R.id.action_navInbox_to_navNotification, bundle);
         });
     }
 
