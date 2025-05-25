@@ -10,6 +10,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import dev.android.project.R;
 import dev.android.project.data.models.User;
 import dev.android.project.data.providers.DBUsersManager;
+import dev.android.project.data.providers.Firebase.FBAuth;
 
 public class RegisterViewModel extends ViewModel
 {
@@ -19,7 +20,7 @@ public class RegisterViewModel extends ViewModel
 
     RegisterViewModel()
     {
-        AUTH = FirebaseAuth.getInstance();
+        AUTH = FBAuth.getInstance();
     }
 
     MutableLiveData<RegisterFormState> getRegisterFormState()
