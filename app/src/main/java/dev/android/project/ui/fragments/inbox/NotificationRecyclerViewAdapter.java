@@ -14,6 +14,7 @@ import com.google.android.material.R;
 import java.util.List;
 
 import dev.android.project.data.models.notifications.Notification;
+import dev.android.project.data.providers.DBNotificationManager;
 import dev.android.project.data.providers.DBStorageManager;
 import dev.android.project.databinding.FragmentItemNotificationBinding;
 import dev.android.project.ui.custom.ProfilePictureImageView;
@@ -54,7 +55,9 @@ public class NotificationRecyclerViewAdapter extends RecyclerView.Adapter<Notifi
 
         holder.itemView.setOnClickListener(v -> {
             Bundle bundle = new Bundle();
-            bundle.putString("notificationID", holder.mItem.getId());
+            String notificationID = holder.mItem.getId();
+            bundle.putString("notificationID", notificationID);
+            DBNotificationManager.setNotificationRead(notificationID);
             Navigation.findNavController(v)
                       .navigate(dev.android.project.R.id.action_navInbox_to_navNotification, bundle);
         });
