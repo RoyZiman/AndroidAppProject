@@ -64,6 +64,7 @@ public class MainActivity extends AppCompatActivity
         if (User.isLoggedIn())
         {
             navMenu.findItem(R.id.navProfile).setVisible(true);
+            navMenu.findItem(R.id.navInbox).setVisible(true);
             navMenu.findItem(R.id.navLogin).setVisible(false);
             navMenu.findItem(R.id.navLogout).setVisible(true)
                    .setOnMenuItemClickListener(item -> {
@@ -75,6 +76,7 @@ public class MainActivity extends AppCompatActivity
         else
         {
             navMenu.findItem(R.id.navProfile).setVisible(false);
+            navMenu.findItem(R.id.navInbox).setVisible(false);
             navMenu.findItem(R.id.navLogin).setVisible(true);
             navMenu.findItem(R.id.navLogout).setVisible(false);
         }
