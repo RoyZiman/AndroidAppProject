@@ -35,7 +35,6 @@ public class LoginViewModel extends ViewModel
 
     public void login(String email, String password)
     {
-
         AUTH.signInWithEmailAndPassword(email, password)
             .addOnSuccessListener(authResult -> _loginResult.setValue(new LoginResult(new User(authResult.getUser()))))
             .addOnFailureListener(e -> _loginResult.setValue(new LoginResult(e.getMessage())));
