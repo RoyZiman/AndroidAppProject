@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.R;
+import com.google.android.material.color.MaterialColors;
 
 import java.util.List;
 
@@ -47,8 +47,11 @@ public class NotificationRecyclerViewAdapter extends RecyclerView.Adapter<Notifi
         holder.mNotificationContent.setText(mValues.get(position).getContent());
 
         if (holder.mItem.isRead())
-            holder.itemView.setBackgroundResource(R.color.material_on_background_disabled);
-        // Todo: Change to a better color
+        {
+            int color = MaterialColors.getColor(holder.itemView,
+                                                com.google.android.material.R.attr.colorSurfaceContainer);
+            holder.itemView.setBackgroundColor(color);
+        }
 
         DBStorageManager.getProfilePicture(holder.mItem.getSenderId())
                         .addOnSuccessListener(holder.mProfilePictureImageView::setImageBitmap);

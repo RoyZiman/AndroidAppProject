@@ -4,7 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:foreground="?attr/selectableItemBackground">
+    android:foreground="?attr/selectableItemBackground"
+    app:cardBackgroundColor="?attr/colorPrimaryContainer">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -33,6 +34,7 @@
             android:lines="1"
             android:text="Notification Title"
             android:textAppearance="?attr/textAppearanceListItem"
+            android:textColor="?attr/colorOnPrimaryContainer"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/ivProfilePicture"
             app:layout_constraintTop_toTopOf="@+id/ivProfilePicture"/>
@@ -48,6 +50,7 @@
             android:lines="2"
             android:text="Notification Content"
             android:textAppearance="?attr/textAppearanceListItemSecondary"
+            android:textColor="?attr/colorOnPrimaryContainer"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/ivProfilePicture"
             app:layout_constraintTop_toBottomOf="@+id/tvNotificationTitle"/>
