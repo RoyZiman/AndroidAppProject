@@ -10,8 +10,10 @@
     <dimen name="card_margin">8dp</dimen>
     <dimen name="card_content_margin">8dp</dimen>
     <dimen name="corner_radius">8dp</dimen>
-    <dimen name="image_view_elevation">8dp</dimen>
+    <dimen name="card_view_overlay_elevation">8dp</dimen>
     <dimen name="text_size_title">28sp</dimen>
     <dimen name="text_size_body">18sp</dimen>
     <dimen name="text_size_secondary">14sp</dimen>
+
+    <dimen name="profile_picture_size">70dp</dimen>
 </resources>

@@ -1,33 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="@dimen/nav_header_height"
     android:background="@drawable/side_nav_bar"
-    android:backgroundTint="?attr/colorBackgroundFloating"
+    android:backgroundTint="?attr/colorPrimarySurface"
     android:orientation="vertical"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingBottom="@dimen/nav_header_bottom_margin"
-    android:theme="@style/ThemeOverlay.AppCompat.Dark">
+    android:paddingBottom="@dimen/nav_header_bottom_margin">
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:layout_marginTop="@dimen/nav_header_vertical_spacing"
-        app:cardBackgroundColor="?attr/colorBackgroundFloating"
-        app:cardCornerRadius="35dp">
+    <dev.android.project.ui.custom.ProfilePictureImageView
+        android:id="@+id/ivProfilePicture"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/nav_header_vertical_spacing"/>
 
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/ivUserImage"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:contentDescription="@string/nav_header_desc"
-            android:scaleType="centerCrop"
-            app:srcCompat="@drawable/ic_nav_profile"/>
-    </androidx.cardview.widget.CardView>
 
     <TextView
         android:id="@+id/tvUserName"
@@ -35,11 +24,14 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/nav_header_vertical_spacing"
         android:text="@string/nav_header_user_name"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="?attr/colorOnPrimarySurface"/>
 
     <TextView
         android:id="@+id/tvUserEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/nav_header_user_email"/>
+        android:text="@string/nav_header_user_email"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textColor="?attr/colorOnPrimarySurface"/>
 </LinearLayout>

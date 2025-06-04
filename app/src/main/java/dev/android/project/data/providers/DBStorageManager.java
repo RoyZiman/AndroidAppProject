@@ -17,28 +17,28 @@ public class DBStorageManager
     private static final StorageReference _storageRef = STORAGE.getReference();
     private static final long ONE_MEGABYTE = 1024 * 1024;
 
-    public static void uploadProfilePicture(String userId, byte[] data)
+    public static Task<Void> uploadProfilePicture(String userId, byte[] data)
     {
         StorageReference pfpRef = _storageRef.child("Users").child(userId).child("ProfilePicture.png");
+        TaskCompletionSource<Void> taskCompletionSource = new TaskCompletionSource<>();
 
         pfpRef.putBytes(data)
-              .addOnSuccessListener(bytes -> Log.v("STORAGE", "Uploaded image successfully"))
-              .addOnFailureListener(exception -> {
-                  Log.v("STORAGE", "Failed to upload image");
-                  Log.e("STORAGE", exception.getMessage());
-              });
+              .addOnSuccessListener(bytes -> taskCompletionSource.setResult(null))
+              .addOnFailureListener(exception -> taskCompletionSource.setException(exception));
+
+        return taskCompletionSource.getTask();
     }
 
-    public static void uploadProductPreview(String productId, byte[] data)
+    public static Task<Void> uploadProductPreview(String productId, byte[] data)
     {
         StorageReference previewRef = _storageRef.child("Products").child(productId).child("Preview.png");
+        TaskCompletionSource<Void> taskCompletionSource = new TaskCompletionSource<>();
 
         previewRef.putBytes(data)
-                  .addOnSuccessListener(bytes -> Log.v("STORAGE", "Uploaded image successfully"))
-                  .addOnFailureListener(exception -> {
-                      Log.v("STORAGE", "Failed to upload image");
-                      Log.e("STORAGE", exception.getMessage());
-                  });
+                  .addOnSuccessListener(bytes -> taskCompletionSource.setResult(null))
+                  .addOnFailureListener(exception -> taskCompletionSource.setException(exception));
+
+        return taskCompletionSource.getTask();
     }
 
     public static Task<Bitmap> getProfilePicture(String userId)

@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/navHome"
-        android:name="dev.android.project.ui.home.HomeFragment"
+        android:name="dev.android.project.ui.fragments.home.HomeFragment"
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_item_product">
         <argument
@@ -21,7 +21,7 @@
 
     <fragment
         android:id="@+id/navCreateListing"
-        android:name="dev.android.project.ui.createListing.CreateListingFragment"
+        android:name="dev.android.project.ui.fragments.createListing.CreateListingFragment"
         android:label="@string/menu_create_listing"
         tools:layout="@layout/fragment_create_listing">
         <action
@@ -31,7 +31,7 @@
 
     <fragment
         android:id="@+id/navProfile"
-        android:name="dev.android.project.ui.profile.ProfileFragment"
+        android:name="dev.android.project.ui.fragments.profile.ProfileFragment"
         android:label="@string/menu_profile"
         tools:layout="@layout/fragment_profile">
         <argument
@@ -45,28 +45,47 @@
             app:destination="@id/navProductView"/>
     </fragment>
 
-    <fragment
-        android:id="@+id/navSettings"
-        android:name="dev.android.project.ui.settings.SettingsFragment"
-        android:label="@string/menu_settings"
-        tools:layout="@layout/fragment_settings"/>
-
 
     <activity
         android:id="@+id/navLogin"
-        android:name="dev.android.project.ui.login.LoginActivity"
+        android:name="dev.android.project.ui.fragments.login.LoginActivity"
         android:label="@string/menu_login"/>
 
 
     <fragment
         android:id="@+id/navProductView"
-        android:name="dev.android.project.ui.product.ProductFragment"
+        android:name="dev.android.project.ui.fragments.product.ProductFragment"
         tools:layout="@layout/fragment_product">
         <argument
             android:name="productID"
             app:argType="string"/>
         <action
             android:id="@+id/action_navProductView_to_navProfile"
+            app:destination="@id/navProfile"/>
+        <action
+            android:id="@+id/action_navProductView_to_navHome"
+            app:destination="@id/navHome"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/navInbox"
+        android:name="dev.android.project.ui.fragments.inbox.InboxFragment"
+        android:label="@string/menu_inbox"
+        tools:layout="@layout/fragment_inbox">
+        <action
+            android:id="@+id/action_navInbox_to_navNotification"
+            app:destination="@id/navNotification"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/navNotification"
+        android:name="dev.android.project.ui.fragments.notification.NotificationFragment"
+        tools:layout="@layout/fragment_notification">
+        <argument
+            android:name="notificationID"
+            app:argType="string"/>
+        <action
+            android:id="@+id/action_navNotification_to_navProfile"
             app:destination="@id/navProfile"/>
     </fragment>
 

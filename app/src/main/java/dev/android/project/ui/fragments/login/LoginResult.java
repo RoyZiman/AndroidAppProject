@@ -1,0 +1,38 @@
+package dev.android.project.ui.fragments.login;
+
+import androidx.annotation.Nullable;
+
+import dev.android.project.data.models.User;
+
+/**
+ * Authentication result : success (user details) or error message.
+ */
+class LoginResult
+{
+    @Nullable
+    private User _success;
+    @Nullable
+    private String _error;
+
+    LoginResult(@Nullable String error)
+    {
+        _error = error;
+    }
+
+    LoginResult(@Nullable User success)
+    {
+        _success = success;
+    }
+
+    @Nullable
+    User getSuccess()
+    {
+        return _success;
+    }
+
+    @Nullable
+    String getError()
+    {
+        return _error;
+    }
+}
