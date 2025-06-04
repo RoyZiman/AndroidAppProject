@@ -13,7 +13,7 @@
         android:layout_height="match_parent"
         app:layoutManager="LinearLayoutManager"
         tools:context=".ui.fragments.notification.NotificationFragment"
-        tools:listitem="@layout/fragment_item_product"/>
+        tools:listitem="@layout/fragment_item_notification"/>
 
     <ProgressBar
         android:id="@+id/loading"
@@ -22,6 +22,19 @@
         android:layout_gravity="center"
         android:layout_marginTop="64dp"
         android:layout_marginBottom="64dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.3"/>
+
+    <TextView
+        android:id="@+id/tvNotLoggedIn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/not_logged_in_inbox"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

@@ -78,7 +78,7 @@
         android:id="@+id/tvNotLoggedIn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/no_logged_in_create_listing"
+        android:text="@string/not_logged_in_create_listing"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

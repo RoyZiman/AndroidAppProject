@@ -18,6 +18,7 @@ import com.google.android.gms.tasks.Task;
 import java.util.ArrayList;
 
 import dev.android.project.data.models.Notification;
+import dev.android.project.data.models.User;
 import dev.android.project.data.providers.DBNotificationManager;
 import dev.android.project.databinding.FragmentInboxBinding;
 
@@ -35,6 +36,13 @@ public class InboxFragment extends Fragment
 
         View root = _binding.getRoot();
         RecyclerView listView = _binding.list;
+
+        if (!User.isLoggedIn())
+        {
+            _binding.tvNotLoggedIn.setVisibility(View.VISIBLE);
+            _binding.list.setVisibility(View.GONE);
+            return root;
+        }
 
         _loadingProgressBar = _binding.loading;
         _loadingProgressBar.setVisibility(View.VISIBLE);
