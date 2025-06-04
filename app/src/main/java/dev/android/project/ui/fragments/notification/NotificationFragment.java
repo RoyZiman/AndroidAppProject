@@ -46,6 +46,8 @@ public class NotificationFragment extends Fragment
                               .observe(getViewLifecycleOwner(), _binding.tvNotificationTitle::setText);
         _notificationViewModel.getNotificationContent()
                               .observe(getViewLifecycleOwner(), _binding.tvNotificationContent::setText);
+        _notificationViewModel.getBuyerName()
+                              .observe(getViewLifecycleOwner(), _binding.tvBuyerName::setText);
         _notificationViewModel.getPriceOffered()
                               .observe(getViewLifecycleOwner(), _binding.tvOfferPrice::setText);
 
