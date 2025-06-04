@@ -65,7 +65,7 @@ public class DBStorageManager
 
     private static void logFailedToGetImage(StorageReference ref, Exception exception)
     {
-        Log.w("STORAGE", "Failed to get image (" + ref.getPath() + "): " + exception.getMessage());
+        Log.w("DBStorage", "Failed to get image (" + ref.getPath() + "): " + exception.getMessage());
     }
 
     public static Task<Bitmap> getProductPreview(String productId)

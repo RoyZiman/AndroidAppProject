@@ -7,8 +7,6 @@
     android:layout_height="match_parent"
     tools:context=".ui.fragments.notification.NotificationFragment">
 
-    <!-- Product Title TextView -->
-
     <TextView
         android:id="@+id/tvNotificationTitle"
         android:layout_width="match_parent"
@@ -22,9 +20,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
-
-    <!-- Product Description TextView -->
-
     <TextView
         android:id="@+id/tvNotificationContent"
         android:layout_width="match_parent"
@@ -37,9 +32,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvNotificationTitle"/>
-
-
-    <!-- Product Price TextView -->
 
     <TextView
         android:id="@+id/tvBuyerName"
