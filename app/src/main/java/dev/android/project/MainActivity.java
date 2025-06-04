@@ -114,7 +114,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onDestroy()
     {
-        AlarmReceiver.scheduleNotification(this, 1);
+        AlarmReceiver.scheduleNotification(this, 300); // Schedule a notification after 5 minutes
         super.onDestroy();
     }
 
