@@ -15,6 +15,10 @@
     <string name="menu_logout">Logout</string>
 
     <string name="title_activity_login">LoginActivity</string>
+    <string name="title_login">Login</string>
+    <string name="title_register">Register</string>
+
+
     <string name="prompt_display_name">Display Name</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
