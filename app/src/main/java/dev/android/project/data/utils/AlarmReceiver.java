@@ -12,7 +12,12 @@ import android.util.Log;
 
 import androidx.core.app.NotificationCompat;
 
+import dev.android.project.MainActivity;
 import dev.android.project.R;
+import dev.android.project.data.models.User;
+import dev.android.project.data.providers.DBNotificationManager;
+import dev.android.project.data.providers.DBProductsManager;
+import dev.android.project.data.providers.DBStorageManager;
 
 public class AlarmReceiver extends BroadcastReceiver
 {
@@ -34,6 +39,12 @@ public class AlarmReceiver extends BroadcastReceiver
     @Override
     public void onReceive(Context context, Intent intent)
     {
+
+        Log.i("AlarmReceiver", "Alarm received! Trying to send notification...");
+
+        if (!User.isLoggedIn())
+            return;
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
         {
             NotificationChannel channel = new NotificationChannel(
@@ -42,24 +53,54 @@ public class AlarmReceiver extends BroadcastReceiver
             manager.createNotificationChannel(channel);
         }
 
-        // Build notification
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(context, "alarm_channel")
-                .setContentTitle("Alarm!")
-                .setContentText("This is your scheduled notification.")
-                .setPriority(NotificationCompat.PRIORITY_HIGH)
-                .setAutoCancel(true)
-                .setSmallIcon(R.drawable.ic_fab_add_image);
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(
+                context,
+                "alarm_channel")
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                .setSmallIcon(R.drawable.ic_notification);
 
 
-//        Intent activityIntent = new Intent(context, MainActivity.class);
-//        PendingIntent pendingIntent = PendingIntent.getActivity(
-//                context, 0, activityIntent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
-//        builder.setContentIntent(pendingIntent);
+        Intent activityIntent =
+                new Intent(context, MainActivity.class);
+        PendingIntent pendingIntent = PendingIntent.getActivity(
+                context,
+                0,
+                activityIntent,
+                PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
+        builder.setContentIntent(pendingIntent).setAutoCancel(true);
+
+
+        DBNotificationManager.getUnreadNotificationsForUser().addOnSuccessListener(
+                messages -> {
+
+                    if (messages == null || messages.isEmpty())
+                        return;
+
+                    builder.setContentTitle("You Have " + messages.size() + " Unread Notifications");
+
+
+                    String productId = messages.get(0).getProductId();
+
+                    DBProductsManager.getProduct(productId).addOnSuccessListener(
+                            product ->
+                            {
+                                builder.setContentText("New Buy Offer for " + product.getTitle());
+
+                                DBStorageManager.getProductPreview(productId)
+                                                .addOnSuccessListener(bitmap -> {
+                                                    builder.setLargeIcon(bitmap);
+                                                    sendNotification(context, builder);
+                                                });
+                            });
+                });
+    }
+
+    private static void sendNotification(Context context, NotificationCompat.Builder builder)
+    {
 
         NotificationManager notificationManager =
                 (NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE);
         notificationManager.notify(1001, builder.build());
-
-        Log.i("AlarmReceiver", "Alarm received! Triggering notification...");
     }
+
 }
