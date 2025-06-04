@@ -40,7 +40,7 @@ public class AlarmReceiver extends BroadcastReceiver
     public void onReceive(Context context, Intent intent)
     {
 
-        Log.i("AlarmReceiver", "Alarm received! Trying to send notification...");
+        Log.i("AlarmReceiver", "Alarm received! Trying to send notification");
 
         if (!User.isLoggedIn())
             return;

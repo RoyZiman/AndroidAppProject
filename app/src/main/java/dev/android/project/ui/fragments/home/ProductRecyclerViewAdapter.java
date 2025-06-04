@@ -21,13 +21,13 @@ import dev.android.project.databinding.FragmentItemProductBinding;
 public class ProductRecyclerViewAdapter extends RecyclerView.Adapter<ProductRecyclerViewAdapter.ViewHolder>
 {
 
-    private final List<Product> mValues;
-    private final int mNavigationAction;
+    private final List<Product> _values;
+    private final int _navigationAction;
 
     public ProductRecyclerViewAdapter(List<Product> items, int navigationAction)
     {
-        mValues = items;
-        mNavigationAction = navigationAction;
+        _values = items;
+        _navigationAction = navigationAction;
     }
 
     @Override
@@ -41,10 +41,10 @@ public class ProductRecyclerViewAdapter extends RecyclerView.Adapter<ProductRecy
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position)
     {
-        holder.mItem = mValues.get(position);
-        holder.mTitleView.setText(mValues.get(position).getTitle());
-        holder.mDescView.setText(mValues.get(position).getDescription());
-        holder.mPriceView.setText(mValues.get(position).getPriceAsString());
+        holder.mItem = _values.get(position);
+        holder.mTitleView.setText(_values.get(position).getTitle());
+        holder.mDescView.setText(_values.get(position).getDescription());
+        holder.mPriceView.setText(_values.get(position).getPriceAsString());
 
         DBStorageManager.getProductPreview(holder.mItem.getId())
                         .addOnSuccessListener(holder.mImagePreview::setImageBitmap);
@@ -52,14 +52,14 @@ public class ProductRecyclerViewAdapter extends RecyclerView.Adapter<ProductRecy
         holder.itemView.setOnClickListener(v -> {
             Bundle bundle = new Bundle();
             bundle.putString("productID", holder.mItem.getId());
-            Navigation.findNavController(v).navigate(mNavigationAction, bundle);
+            Navigation.findNavController(v).navigate(_navigationAction, bundle);
         });
     }
 
     @Override
     public int getItemCount()
     {
-        return mValues.size();
+        return _values.size();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder

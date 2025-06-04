@@ -24,11 +24,11 @@ import dev.android.project.ui.custom.ProfilePictureImageView;
  */
 public class NotificationRecyclerViewAdapter extends RecyclerView.Adapter<NotificationRecyclerViewAdapter.ViewHolder>
 {
-    private final List<Notification> mValues;
+    private final List<Notification> _values;
 
     public NotificationRecyclerViewAdapter(List<Notification> items)
     {
-        mValues = items;
+        _values = items;
     }
 
     @Override
@@ -42,9 +42,9 @@ public class NotificationRecyclerViewAdapter extends RecyclerView.Adapter<Notifi
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position)
     {
-        holder.mItem = mValues.get(position);
-        holder.mNotificationTitle.setText(mValues.get(position).getTitle());
-        holder.mNotificationContent.setText(mValues.get(position).getContent());
+        holder.mItem = _values.get(position);
+        holder.mNotificationTitle.setText(_values.get(position).getTitle());
+        holder.mNotificationContent.setText(_values.get(position).getContent());
 
         if (holder.mItem.isRead())
         {
@@ -69,7 +69,7 @@ public class NotificationRecyclerViewAdapter extends RecyclerView.Adapter<Notifi
     @Override
     public int getItemCount()
     {
-        return mValues != null ? mValues.size() : 0;
+        return _values != null ? _values.size() : 0;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder

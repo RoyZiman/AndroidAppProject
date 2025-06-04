@@ -23,7 +23,7 @@ import dev.android.project.ui.custom.ProfilePictureImageView;
 public class MainActivity extends AppCompatActivity
 {
 
-    private AppBarConfiguration _mAppBarConfiguration;
+    private AppBarConfiguration _appBarConfiguration;
     private ActivityMainBinding _binding;
 
 
@@ -51,12 +51,12 @@ public class MainActivity extends AppCompatActivity
 
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
-        _mAppBarConfiguration = new AppBarConfiguration.Builder(
+        _appBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.navHome, R.id.navCreateListing, R.id.navInbox)
                 .setOpenableLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
-        NavigationUI.setupActionBarWithNavController(this, navController, _mAppBarConfiguration);
+        NavigationUI.setupActionBarWithNavController(this, navController, _appBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
     }
@@ -122,7 +122,7 @@ public class MainActivity extends AppCompatActivity
     public boolean onSupportNavigateUp()
     {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
-        return NavigationUI.navigateUp(navController, _mAppBarConfiguration)
+        return NavigationUI.navigateUp(navController, _appBarConfiguration)
                || super.onSupportNavigateUp();
     }
 }

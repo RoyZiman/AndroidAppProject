@@ -11,7 +11,7 @@ import com.google.android.material.imageview.ShapeableImageView;
 public class ProfilePictureImageView extends CardView
 {
     private static final int FOREGROUND_ATTR = android.R.attr.selectableItemBackground;
-    private ShapeableImageView imageView;
+    private ShapeableImageView _imageView;
 
     public ProfilePictureImageView(Context context)
     {
@@ -28,15 +28,15 @@ public class ProfilePictureImageView extends CardView
         LayoutParams params = new LayoutParams(size, size);
         setCardElevation(5);
 
-        imageView = new ShapeableImageView(context);
-        imageView.setLayoutParams(params);
-        imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-        imageView.setShapeAppearanceModel(
-                imageView.getShapeAppearanceModel()
-                         .toBuilder()
-                         .build()
+        _imageView = new ShapeableImageView(context);
+        _imageView.setLayoutParams(params);
+        _imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+        _imageView.setShapeAppearanceModel(
+                _imageView.getShapeAppearanceModel()
+                          .toBuilder()
+                          .build()
         );
-        addView(imageView);
+        addView(_imageView);
         // Set selectable foreground
         int[] attrs = new int[] {FOREGROUND_ATTR};
         android.content.res.TypedArray ta = context.obtainStyledAttributes(attrs);
@@ -44,7 +44,7 @@ public class ProfilePictureImageView extends CardView
         ta.recycle();
         setForeground(foregroundResId != 0 ? context.getDrawable(foregroundResId) : null);
 
-        imageView.setImageResource(
+        _imageView.setImageResource(
                 context.getResources().getIdentifier("ic_nav_profile", "drawable", context.getPackageName())
         );
     }
@@ -63,22 +63,22 @@ public class ProfilePictureImageView extends CardView
 
     public void setImageResource(int resId)
     {
-        imageView.setImageResource(resId);
+        _imageView.setImageResource(resId);
     }
 
     public void setImageBitmap(android.graphics.Bitmap bitmap)
     {
-        imageView.setImageBitmap(bitmap);
+        _imageView.setImageBitmap(bitmap);
     }
 
     public void setImageDrawable(android.graphics.drawable.Drawable drawable)
     {
-        imageView.setImageDrawable(drawable);
+        _imageView.setImageDrawable(drawable);
     }
 
     public ShapeableImageView getImageView()
     {
-        return imageView;
+        return _imageView;
     }
 
 }

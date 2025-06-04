@@ -16,36 +16,36 @@ import dev.android.project.data.providers.DBUsersManager;
 
 public class ProfileViewModel extends ViewModel
 {
-    private final MutableLiveData<User> _user = new MutableLiveData<>();
-    private final MutableLiveData<ArrayList<Product>> _products = new MutableLiveData<>();
-    private final MutableLiveData<Bitmap> _profilePicture = new MutableLiveData<>();
-    private final MutableLiveData<String> _error = new MutableLiveData<>();
+    private final MutableLiveData<User> mUser = new MutableLiveData<>();
+    private final MutableLiveData<ArrayList<Product>> mProducts = new MutableLiveData<>();
+    private final MutableLiveData<Bitmap> mProfilePicture = new MutableLiveData<>();
+    private final MutableLiveData<String> mError = new MutableLiveData<>();
 
     public LiveData<User> getUser()
     {
-        return _user;
+        return mUser;
     }
 
     public LiveData<Bitmap> getProfilePicture()
     {
-        return _profilePicture;
+        return mProfilePicture;
     }
 
     public LiveData<ArrayList<Product>> getProducts()
     {
-        return _products;
+        return mProducts;
     }
 
     public LiveData<String> getError()
     {
-        return _error;
+        return mError;
     }
 
     public void fetchUser()
     {
         if (User.isLoggedIn())
         {
-            _user.setValue(User.getCurrentUser());
+            mUser.setValue(User.getCurrentUser());
             fetchUserProducts();
             fetchProfilePicture();
         }
@@ -53,23 +53,23 @@ public class ProfileViewModel extends ViewModel
 
     private void fetchUserProducts()
     {
-        DBProductsManager.getAllProductsByUser(_user.getValue().getId()).addOnCompleteListener(task -> {
+        DBProductsManager.getAllProductsByUser(mUser.getValue().getId()).addOnCompleteListener(task -> {
             if (task.isSuccessful())
             {
-                _products.setValue(task.getResult());
+                mProducts.setValue(task.getResult());
             }
             else
             {
-                _error.setValue(task.getException().getMessage());
+                mError.setValue(task.getException().getMessage());
             }
         });
     }
 
     private void fetchProfilePicture()
     {
-        DBStorageManager.getProfilePicture(_user.getValue().getId())
-                        .addOnSuccessListener(bitmap -> _profilePicture.setValue(bitmap))
-                        .addOnFailureListener(e -> _error.setValue(e.getMessage()));
+        DBStorageManager.getProfilePicture(mUser.getValue().getId())
+                        .addOnSuccessListener(bitmap -> mProfilePicture.setValue(bitmap))
+                        .addOnFailureListener(e -> mError.setValue(e.getMessage()));
     }
 
     public void fetchUser(String userId)
@@ -77,13 +77,13 @@ public class ProfileViewModel extends ViewModel
         DBUsersManager.getUser(userId).addOnCompleteListener(task -> {
             if (task.isSuccessful())
             {
-                _user.setValue(task.getResult());
+                mUser.setValue(task.getResult());
                 fetchUserProducts();
                 fetchProfilePicture();
             }
             else
             {
-                _error.setValue(task.getException().getMessage());
+                mError.setValue(task.getException().getMessage());
             }
         });
     }
