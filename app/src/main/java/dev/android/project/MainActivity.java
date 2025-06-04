@@ -1,5 +1,6 @@
 package dev.android.project;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.widget.TextView;
@@ -34,6 +35,15 @@ public class MainActivity extends AppCompatActivity
 
         _binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(_binding.getRoot());
+
+
+        // Request notification permission if necessary (Android 13+)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU)
+        {
+            if (checkSelfPermission(android.Manifest.permission.POST_NOTIFICATIONS) !=
+                android.content.pm.PackageManager.PERMISSION_GRANTED)
+                requestPermissions(new String[] {android.Manifest.permission.POST_NOTIFICATIONS}, 1001);
+        }
 
         setSupportActionBar(_binding.appBarMain.toolbar);
         DrawerLayout drawer = _binding.drawerLayout;
