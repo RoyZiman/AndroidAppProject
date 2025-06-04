@@ -9,8 +9,8 @@ import com.google.firebase.firestore.Query;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import dev.android.project.data.models.Notification;
 import dev.android.project.data.models.User;
-import dev.android.project.data.models.notifications.Notification;
 import dev.android.project.data.providers.Firebase.FBFirestore;
 
 public class DBNotificationManager
@@ -44,9 +44,7 @@ public class DBNotificationManager
                               taskCompletionSource.setResult(notifications);
                           }
                           else
-                          {
                               taskCompletionSource.setException(task.getException());
-                          }
                       });
         return taskCompletionSource.getTask();
     }
@@ -62,6 +60,29 @@ public class DBNotificationManager
                                 document.getString(FIELD_PRODUCT_ID),
                                 document.getTimestamp(FIELD_TIMESTAMP))
                 .setId(document.getId());
+    }
+
+    public static Task<ArrayList<Notification>> getUnreadNotificationsForUser()
+    {
+        String userId = User.getCurrentUser().getId();
+
+        TaskCompletionSource<ArrayList<Notification>> taskCompletionSource = new TaskCompletionSource<>();
+        _collectionRef.whereEqualTo(FIELD_RECEIVER_ID, userId)
+                      .whereEqualTo(FIELD_IS_READ, false)
+                      .orderBy(FIELD_TIMESTAMP, Query.Direction.DESCENDING).get()
+                      .addOnCompleteListener(task -> {
+                          if (task.isSuccessful())
+                          {
+                              ArrayList<Notification> notifications = new ArrayList<>();
+                              for (DocumentSnapshot document : task.getResult().getDocuments())
+                                  notifications.add(documentToNotification(document));
+
+                              taskCompletionSource.setResult(notifications);
+                          }
+                          else
+                              taskCompletionSource.setException(task.getException());
+                      });
+        return taskCompletionSource.getTask();
     }
 
     public static Task<Notification> sendNotification(Notification notification)

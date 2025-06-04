@@ -3,7 +3,7 @@ package dev.android.project.ui.fragments.notification;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import dev.android.project.data.models.notifications.Notification;
+import dev.android.project.data.models.Notification;
 
 public class NotificationViewModel extends ViewModel
 {

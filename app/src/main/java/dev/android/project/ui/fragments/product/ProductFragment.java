@@ -16,9 +16,9 @@ import androidx.navigation.Navigation;
 import com.google.firebase.Timestamp;
 
 import dev.android.project.R;
+import dev.android.project.data.models.Notification;
 import dev.android.project.data.models.Product;
 import dev.android.project.data.models.User;
-import dev.android.project.data.models.notifications.Notification;
 import dev.android.project.data.providers.DBNotificationManager;
 import dev.android.project.data.providers.DBProductsManager;
 import dev.android.project.data.providers.DBStorageManager;

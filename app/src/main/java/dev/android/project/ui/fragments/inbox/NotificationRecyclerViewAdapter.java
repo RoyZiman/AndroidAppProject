@@ -13,7 +13,7 @@ import com.google.android.material.color.MaterialColors;
 
 import java.util.List;
 
-import dev.android.project.data.models.notifications.Notification;
+import dev.android.project.data.models.Notification;
 import dev.android.project.data.providers.DBNotificationManager;
 import dev.android.project.data.providers.DBStorageManager;
 import dev.android.project.databinding.FragmentItemNotificationBinding;
