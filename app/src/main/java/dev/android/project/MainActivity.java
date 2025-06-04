@@ -15,6 +15,7 @@ import com.google.android.material.navigation.NavigationView;
 
 import dev.android.project.data.models.User;
 import dev.android.project.data.providers.DBStorageManager;
+import dev.android.project.data.utils.AlarmReceiver;
 import dev.android.project.databinding.ActivityMainBinding;
 import dev.android.project.ui.custom.ProfilePictureImageView;
 
@@ -100,6 +101,12 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+    @Override
+    protected void onDestroy()
+    {
+        AlarmReceiver.scheduleNotification(this, 1);
+        super.onDestroy();
+    }
 
     @Override
     public boolean onSupportNavigateUp()
