@@ -19,8 +19,20 @@ import dev.android.project.data.providers.DBNotificationManager;
 import dev.android.project.data.providers.DBProductsManager;
 import dev.android.project.data.providers.DBStorageManager;
 
+/**
+ * BroadcastReceiver that handles scheduled alarms and displays notifications to the user.
+ * <p>
+ * Provides methods to schedule an alarm and handle the broadcast when the alarm is triggered.
+ */
 public class AlarmReceiver extends BroadcastReceiver
 {
+    /**
+     * Schedules a notification to be triggered after a specified delay.
+     *
+     * @param context The application context.
+     * @param triggerDelayS The delay in seconds after which the notification should be triggered. Please note
+     *         that the delay is not precise because AlarmManager.set() is used and does not guarantee exact timing.
+     */
     public static void scheduleNotification(Context context, long triggerDelayS)
     {
         AlarmManager alarmManager = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
@@ -36,6 +48,15 @@ public class AlarmReceiver extends BroadcastReceiver
         Log.i("AlarmReceiver", "Alarm scheduled to trigger in about " + triggerDelayS + " seconds.");
     }
 
+    /**
+     * Called when the scheduled alarm is received.
+     * <p>
+     * Checks if the user is logged in, creates a notification channel if necessary, builds a notification, and displays
+     * it if there are unread notifications.
+     *
+     * @param context The application context.
+     * @param intent The received intent.
+     */
     @Override
     public void onReceive(Context context, Intent intent)
     {
@@ -95,6 +116,12 @@ public class AlarmReceiver extends BroadcastReceiver
                 });
     }
 
+    /**
+     * Sends the built notification using the NotificationManager.
+     *
+     * @param context The application context.
+     * @param builder The notification builder containing notification details.
+     */
     private static void sendNotification(Context context, NotificationCompat.Builder builder)
     {
 

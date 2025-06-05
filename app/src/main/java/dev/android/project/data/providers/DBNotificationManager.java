@@ -13,6 +13,11 @@ import dev.android.project.data.models.Notification;
 import dev.android.project.data.models.User;
 import dev.android.project.data.providers.Firebase.FBFirestore;
 
+/**
+ * Manages notification-related operations in Firestore.
+ * <p>
+ * Provides methods to retrieve, send, and update notifications for users.
+ */
 public class DBNotificationManager
 {
     public static final String COLLECTION_NAME = "notifications";
@@ -27,6 +32,11 @@ public class DBNotificationManager
 
     private static final CollectionReference _collectionRef = FBFirestore.getInstance().collection(COLLECTION_NAME);
 
+    /**
+     * Retrieves all notifications for the current user, ordered by timestamp descending.
+     *
+     * @return A {@link Task} containing a list of {@link Notification} objects.
+     */
     public static Task<ArrayList<Notification>> getAllNotificationsForUser()
     {
         String userId = User.getCurrentUser().getId();
@@ -49,6 +59,13 @@ public class DBNotificationManager
         return taskCompletionSource.getTask();
     }
 
+    /**
+     * Converts a Firestore {@link DocumentSnapshot} to a {@link Notification} object.
+     *
+     * @param document The Firestore document snapshot.
+     *
+     * @return The corresponding {@link Notification} object.
+     */
     private static Notification documentToNotification(DocumentSnapshot document)
     {
         return new Notification(document.getString(FIELD_TITLE),
@@ -62,6 +79,11 @@ public class DBNotificationManager
                 .setId(document.getId());
     }
 
+    /**
+     * Retrieves all unread notifications for the current user, ordered by timestamp descending.
+     *
+     * @return A {@link Task} containing a list of unread {@link Notification} objects.
+     */
     public static Task<ArrayList<Notification>> getUnreadNotificationsForUser()
     {
         String userId = User.getCurrentUser().getId();
@@ -85,6 +107,13 @@ public class DBNotificationManager
         return taskCompletionSource.getTask();
     }
 
+    /**
+     * Sends a new notification by adding it to the Firestore collection.
+     *
+     * @param notification The {@link Notification} to send.
+     *
+     * @return A {@link Task} containing the sent {@link Notification} with its Firestore ID set.
+     */
     public static Task<Notification> sendNotification(Notification notification)
     {
         TaskCompletionSource<Notification> taskCompletionSource = new TaskCompletionSource<>();
@@ -112,11 +141,25 @@ public class DBNotificationManager
         return taskCompletionSource.getTask();
     }
 
+    /**
+     * Marks a notification as read in Firestore.
+     *
+     * @param notificationId The ID of the notification to mark as read.
+     *
+     * @return A {@link Task} representing the update operation.
+     */
     public static Task<Void> setNotificationRead(String notificationId)
     {
         return _collectionRef.document(notificationId).update(FIELD_IS_READ, true);
     }
 
+    /**
+     * Retrieves a specific notification by its ID.
+     *
+     * @param notificationId The ID of the notification to retrieve.
+     *
+     * @return A {@link Task} containing the {@link Notification} object.
+     */
     public static Task<Notification> getNotification(String notificationId)
     {
         TaskCompletionSource<Notification> taskCompletionSource = new TaskCompletionSource<>();
