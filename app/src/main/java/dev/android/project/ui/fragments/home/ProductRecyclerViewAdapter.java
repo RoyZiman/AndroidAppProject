@@ -62,6 +62,9 @@ public class ProductRecyclerViewAdapter extends RecyclerView.Adapter<ProductRecy
         return _values.size();
     }
 
+    /**
+     * ViewHolder for displaying a Product item in the RecyclerView.
+     */
     public static class ViewHolder extends RecyclerView.ViewHolder
     {
         public final TextView mTitleView;
@@ -70,6 +73,11 @@ public class ProductRecyclerViewAdapter extends RecyclerView.Adapter<ProductRecy
         public final ImageView mImagePreview;
         public Product mItem;
 
+        /**
+         * Constructs a new ViewHolder with the provided binding.
+         *
+         * @param binding The binding for the product item layout.
+         */
         public ViewHolder(FragmentItemProductBinding binding)
         {
             super(binding.getRoot());
