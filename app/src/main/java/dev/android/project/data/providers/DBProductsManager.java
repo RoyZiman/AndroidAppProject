@@ -87,6 +87,18 @@ public class DBProductsManager
     }
 
     /**
+     * Removes a product from the Firestore collection by its ID.
+     *
+     * @param productId The ID of the product to remove.
+     *
+     * @return A {@link Task} representing the completion of the removal operation.
+     */
+    public static Task<Void> removeProduct(String productId)
+    {
+        return _collectionRef.document(productId).delete();
+    }
+
+    /**
      * Retrieves a specific product by its ID.
      *
      * @param id The ID of the product to retrieve.

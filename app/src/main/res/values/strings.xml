@@ -3,7 +3,6 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_user_name">Guest</string>
-    <string name="nav_header_user_email">Guest@project.android.dev</string>
     <string name="nav_header_desc">Navigation header</string>
 
     <string name="menu_home">Home</string>
@@ -42,6 +41,7 @@
     <string name="not_logged_in_offer">You must be logged in to make an offer</string>
     <string name="hint_store">Seller</string>
     <string name="action_send_offer">Send Offer</string>
+    <string name="action_delete_product">Delete Product</string>
     <string name="hint_product_price_offer">Offer Price</string>
 
     <string name="hint_buyer">Buyer</string>

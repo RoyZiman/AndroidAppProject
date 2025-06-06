@@ -45,6 +45,9 @@ public class ProductFragment extends Fragment
             setProduct(productID);
         }
 
+        setLoggedInVisibility();
+        _binding.btnDeleteProduct.setVisibility(View.GONE);
+
 
         _productViewModel.getProductTitle()
                          .observe(getViewLifecycleOwner(), _binding.tvProductTitle::setText);
@@ -84,7 +87,10 @@ public class ProductFragment extends Fragment
                                                      .trim();
             if (offerPrice.isEmpty())
             {
-                Toast.makeText(getContext(), "Please enter a price", Toast.LENGTH_SHORT).show();
+                // Should be unreachable, but used for typing safety
+                Toast.makeText(getContext(),
+                               "WARNING: Send offer button should not be enabled if the price is empty",
+                               Toast.LENGTH_SHORT).show();
                 return;
             }
 
@@ -112,6 +118,22 @@ public class ProductFragment extends Fragment
             });
         });
 
+        _binding.btnDeleteProduct.setOnClickListener(v -> {
+            Product product = _productViewModel.getProduct();
+            DBProductsManager.removeProduct(product.getId()).addOnCompleteListener(task -> {
+                if (task.isSuccessful())
+                {
+                    Toast.makeText(getContext(), "Product deleted successfully", Toast.LENGTH_SHORT).show();
+                    Navigation.findNavController(v).navigate(R.id.action_navProductView_to_navHome);
+                }
+                else
+                {
+                    Toast.makeText(getContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
+        });
+
+
         return _binding.getRoot();
     }
 
@@ -126,12 +148,16 @@ public class ProductFragment extends Fragment
     {
         ProgressBar _loadingProgressBar = _binding.loading;
         _loadingProgressBar.setVisibility(View.VISIBLE);
+        _binding.btnDeleteProduct.setVisibility(View.VISIBLE);
 
         DBProductsManager.getProduct(productID).addOnCompleteListener(task -> {
             if (task.isSuccessful())
             {
                 _productViewModel.setProduct(task.getResult());
                 String sellerID = task.getResult().getStoreID();
+
+                if (User.isLoggedIn() && sellerID.equals(User.getCurrentUser().getId()))
+                    _binding.btnDeleteProduct.setVisibility(View.VISIBLE);
 
                 _binding.ivProfilePicture.setOnClickListener(v -> {
                     Bundle bundle = new Bundle();
@@ -173,7 +199,6 @@ public class ProductFragment extends Fragment
                 Toast.makeText(getContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
             }
 
-            setLoggedInVisibility();
             _loadingProgressBar.setVisibility(View.GONE);
         });
     }
@@ -190,6 +215,7 @@ public class ProductFragment extends Fragment
         {
             _binding.btnSendOffer.setVisibility(View.GONE);
             _binding.etPriceOffer.setVisibility(View.GONE);
+            _binding.btnDeleteProduct.setVisibility(View.GONE);
             _binding.tvNotLoggedIn.setVisibility(View.VISIBLE);
         }
     }

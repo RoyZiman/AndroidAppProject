@@ -103,6 +103,17 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvProductDescription"/>
 
+            <Button
+                android:id="@+id/btnDeleteProduct"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/card_content_margin"
+                android:layout_marginVertical="@dimen/activity_vertical_margin"
+                android:backgroundTint="?attr/colorError"
+                android:text="@string/action_delete_product"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ivProfilePicture"/>
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
