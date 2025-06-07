@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -29,6 +28,7 @@ import dev.android.project.R;
 import dev.android.project.data.models.User;
 import dev.android.project.data.providers.DBStorageManager;
 import dev.android.project.databinding.FragmentProfileBinding;
+import dev.android.project.ui.custom.ProfilePictureImageView;
 import dev.android.project.ui.fragments.home.ProductRecyclerViewAdapter;
 
 public class ProfileFragment extends Fragment
@@ -59,7 +59,8 @@ public class ProfileFragment extends Fragment
                                 .addOnSuccessListener(task -> {
                                     NavigationView navigationView = requireActivity().findViewById(R.id.nav_view);
                                     View headerView = navigationView.getHeaderView(0);
-                                    ImageView menuProfileImage = headerView.findViewById(R.id.ivProfilePicture);
+                                    ProfilePictureImageView menuProfileImage =
+                                            headerView.findViewById(R.id.ivProfilePicture);
                                     menuProfileImage.setImageBitmap(BitmapFactory.decodeByteArray(imageData,
                                                                                                   0,
                                                                                                   imageData.length));
