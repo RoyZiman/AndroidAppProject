@@ -53,7 +53,6 @@ public class NotificationViewModel extends ViewModel
         mNotificationContent.setValue(notification.getContent());
         mPriceOffered.setValue(notification.getPriceOffered() + "$");
 
-        mBuyerName.setValue(notification.getSenderId());
         DBUsersManager.getUser(notification.getSenderId()).addOnSuccessListener(
                 user -> mBuyerName.setValue(user.getName()));
 
